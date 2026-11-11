@@ -1,0 +1,57 @@
+# Lion Circuits (India) PCB + PCBA profile. Re-verify on https://www.lioncircuits.com before ordering.
+# Fabrication limits are the "MII" (cheapest) tier's, so a board that passes also qualifies for MII; impedance control
+# is a Custom-tier option (stated "upto 12 layers including impedance control"), quoted through sales@lioncircuits.com.
+id: lioncircuits
+name: Lion Circuits (PCB + PCBA)
+parts_source: lioncircuits  # sourcing.bom checks every MPN against Lion's live catalogue (rea-hw lion-parts)
+max_lead_time_days: 15
+retrieved: 2026-11-02
+sources:
+  pcb: https://www.lioncircuits.com/pcb-manufacturing-capabilities
+  parts: https://www.lioncircuits.com/parts
+  bga: https://www.lioncircuits.com/faq/pcb-assembly/do-you-support-bga-component-assembly
+tiers:
+  mii: {layers: [2, 4], copper_oz: [1], min_drill_mm: 0.35, min_track_space_mil: 6, impedance_control: false}
+  custom: {layers: [1, 2, 4, 6, 8, 10, 12], copper_oz: [1, 2, 3], min_drill_mm: 0.25, min_track_space_mil: 6,
+           impedance_control: true, castellation: true}
+  rush: {layers: [1, 2, 4, 6, 8, 10, 12], copper_oz: [1, 2], min_drill_mm: 0.40, min_track_space_mil: 8}
+stackups_published: ["4-layer 1.6 mm", "6-layer 1.6 mm", "4-layer 1.0 mm"]
+# Active project target: 6-layer 1.6 mm Custom tier with impedance control (F.Cu signal / In1.Cu GND / In2.Cu signal /
+# In3.Cu +5V & +3V3 power / In4.Cu GND / B.Cu signal) on Lion's published 6-layer 1.6 mm stack-up:
+# L1 F.Cu (0.035 mm) / Prepreg 2116*1 (0.12 mm) / L2 In1.Cu (0.035 mm) / Core NP-140 (0.36 mm) /
+# L3 In2.Cu (0.035 mm) / Prepreg 2116*4 (0.48 mm) / L4 In3.Cu (0.035 mm) / Core NP-140 (0.36 mm) /
+# L5 In4.Cu (0.035 mm) / Prepreg 2116*1 (0.12 mm) / L6 B.Cu (0.035 mm).
+# BOM/CPL notes: 6-layer 1.6 mm Custom-tier PCBA, 2-up assembly panel (>= 50 x 100 mm), MPN-keyed BOM and Top/Bottom CPL.
+pcb:
+  layers_allowed: [1, 2, 4, 6, 8, 10, 12]
+  thickness_mm_options: [1.0, 1.6]
+  min_track_mm: {two_layer: 0.1524, multilayer: 0.1524}        # 6 mil
+  min_clearance_mm: {two_layer: 0.1524, multilayer: 0.1524}    # 6 mil (also trace to copper pour)
+  min_via_drill_mm: 0.35                                       # MII mechanical drill 0.35-6.3 mm
+  min_via_diameter_mm: 0.66                                    # 0.35 drill + 2 x 0.152 ring, rounded up
+  min_pth_drill_mm: 0.35
+  min_npth_drill_mm: 0.50
+  min_annular_ring_mm: {two_layer: 0.152, multilayer: 0.152}   # 6 mil, all tiers
+  min_hole_to_hole_mm: 0.3048                                  # MII via-to-via 12 mil
+  min_copper_to_edge_mm: 0.30                                  # 12 mil, all tiers
+  min_silk_line_mm: 0.152
+  min_silk_text_height_mm: 0.8                                 # stated minimum 0.5842 mm (23 mil); 0.8 reads cleanly
+  min_solder_mask_bridge_mm: 0.152
+  min_slot_mm: 0.8
+  min_board_mm: [3, 3]
+  max_board_mm: [400, 500]
+assembly:
+  min_board_mm: [50, 100]   # machine assembly; smaller boards must be panelized (fab/panel)
+  non_rectangular_rails_mm: 5  # non-rectangular boards: 5 mm side rails on the longer edge
+  sides: [top, bottom]
+  stencil: framed            # "essential" for BGA, QFN and 0402
+  inspection: [AOI, X-ray for BGA/QFN]
+  bom_columns: ["Designator", "Quantity", "Value", "Footprint", "MPN", "Manufacturer", "Description"]
+  cpl_columns: ["Designator", "Mid X", "Mid Y", "Layer", "Rotation"]
+  part_library: [stock, consigned]
+recommended:
+  track_mm: 0.20
+  clearance_mm: 0.20
+  via_drill_mm: 0.35
+  via_diameter_mm: 0.70
+  copper_to_edge_mm: 0.40

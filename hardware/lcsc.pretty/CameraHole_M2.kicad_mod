@@ -1,0 +1,95 @@
+(footprint "CameraHole_M2"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2.5 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "ec11a600-cff8-45a3-940a-826bb75a5ffa")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CameraHole_M2"
+		(at 0 2.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "93c6c6fd-1f56-4b27-b368-29fcefdcd21b")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7cee15ce-cc9a-4433-9662-f5f59d1e9254")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7a0031ad-10c7-4682-841e-636c423b4310")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr board_only exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.8 1.5)
+		(end 0.8 1.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a63fad8a-37d8-4861-a13d-4f2a507dfce0")
+	)
+	(fp_line
+		(start -0.8 1.8)
+		(end -0.8 1.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "dfc0c024-7d80-4b88-b7bb-ab8a43b3461e")
+	)
+	(fp_line
+		(start 0.8 1.5)
+		(end 0.8 1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "8ce428c7-9155-4c38-a61c-0761660307e1")
+	)
+	(fp_line
+		(start 0.8 1.8)
+		(end -0.8 1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1aeff559-372b-49ad-bc65-ae74cd388161")
+	)
+	(embedded_fonts no)
+)

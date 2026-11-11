@@ -1,0 +1,9 @@
+[project]
+name = "hardware-design"
+version = "0.1.0"
+description = "Hardware design generated with rea-hardware"
+requires-python = ">=3.10"
+dependencies = ["rea-hardware[video]"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

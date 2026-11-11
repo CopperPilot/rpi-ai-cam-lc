@@ -1,0 +1,444 @@
+schema_version: rea-hardware/spec/v1
+product:
+  slug: rpi-ai-cam-lc
+  name: Compact CM5 AI Camera
+  summary: "Compute Module 5 6-layer carrier board (55x40 mm) with 12MP AI Camera rotated 90 deg on 8 mm spacers, 50 mm fold-under 15-pin FFC on CAM0, USB-C PD/flashing, 2x USB-A 2.0, full-size HDMI, and snap-fit two-part FDM enclosure assembled by Lion Circuits"
+  category: embedded camera
+inputs:
+  images:
+    - inputs/ref-cm5-ai-cam-3d_top.jpg
+    - inputs/ref-cm5-ai-cam-3d_bottom.jpg
+    - inputs/ref-cm5-ai-cam-3d_iso.jpg
+    - inputs/ai-camera-drawing.jpg
+    - inputs/camera-module-3-drawing.jpg
+    - inputs/camera-cable-200mm-drawing.jpg
+  views:
+    front: inputs/ref-cm5-ai-cam-3d_top.jpg
+    rear: inputs/ref-cm5-ai-cam-3d_bottom.jpg
+  prompt: inputs/prompt.md
+envelope:
+  width_mm: 59.0
+  height_mm: 44.0
+  depth_mm: 27.5
+  corner_radius_mm: 5.0
+  derivation: "55.0 x 40.0 mm CM5 carrier PCB (3.0 mm corner radius) enclosed by 2.0 mm FDM shell walls -> 59.0 x 44.0 mm plan view (5.0 mm outer corner radius). Depth spans Z=-7.5 mm (rear wall below CM5 module at Z=-5.02..0) to Z=+20.0 mm (front shell flush over AI Camera lens front at Z=+19.75 mm; 1.6 mm PCB + 8.0 mm M2 spacer + two 0.5 mm washers = 10.6 mm camera PCB underside + 9.15 mm camera front stack) -> 27.5 mm total depth."
+  front_origin_world_mm: [-2.0, 2.0, 20.0]
+fidelity:
+  brand_marks_excluded:
+    - sony
+    - waveshare
+    - arducam
+  out_of_scope:
+    - tripod mount thread
+    - external Wi-Fi u.FL antenna
+    - SD card slot
+    - 40-pin GPIO expansion header
+  dimensions:
+    - {name: overall_width, kind: overall_width, value_mm: 59.0, tol_mm: 1.5, source: "55.0 mm CM5 PCB + 2 x 2.0 mm FDM shell walls"}
+    - {name: overall_height, kind: overall_height, value_mm: 44.0, tol_mm: 1.5, source: "40.0 mm CM5 PCB + 2 x 2.0 mm FDM shell walls"}
+    - {name: overall_depth, kind: overall_depth, value_mm: 27.5, tol_mm: 1.5, source: "Z=-7.5 mm rear shell to Z=+20.0 mm front shell over AI Camera lens at Z=+19.75 mm"}
+    - {name: corner_radius, kind: corner_radius, value_mm: 5.0, tol_mm: 1.0, source: "3.0 mm PCB corner radius + 2.0 mm concentric FDM wall"}
+  must_match:
+    - {id: F1, name: camera lens window, kind: window, view: front, center_mm: [25.0, 17.7], size_mm: [8.0, 8.0], implement: case, source: photo, confidence: high, notes: "Round/conical opening centered over Ø5.75 mm AI Camera lens front at board (23.0, 15.7), world (23.0, -15.7, 19.75), clearing full 66.3 x 52.3 deg +/- 3 deg FOV (horizontal along y)"}
+    - {id: F2, name: power button, kind: button, view: front, center_mm: [40.5, 29.6], size_mm: [4.5, 4.5], implement: pcb+case, source: photo, confidence: high, notes: "Momentary power button over SW1 on PWR_BUT at board (38.5, 27.6), moved below the y=7.7..23.7 mm 16 mm FFC U-turn band"}
+    - {id: F3, name: boot pinhole, kind: button, view: front, center_mm: [6.5, 12.5], size_mm: [2.0, 2.0], implement: pcb+case, source: photo, confidence: high, notes: "Paperclip pinhole over SW2 on nRPIBOOT at board (4.5, 10.5)"}
+    - {id: F4, name: USB-C power and flashing port, kind: port, view: right, center_mm: [13.5, 16.75], size_mm: [9.5, 3.8], implement: pcb+case, source: photo, confidence: high, notes: "Right-edge opening for J1 GCT USB4105-GF-A at board (51.5, 11.5)"}
+    - {id: F5, name: HDMI port, kind: port, view: right, center_mm: [27.0, 15.3], size_mm: [15.5, 6.2], implement: pcb+case, source: photo, confidence: high, notes: "Right-edge opening for J4 Amphenol 10029449-111RLF at board (49.0, 25.0)"}
+    - {id: F6, name: USB 2.0 Type-A host port 0, kind: port, view: bottom, center_mm: [18.0, 14.85], size_mm: [14.8, 7.2], implement: pcb+case, source: photo, confidence: high, notes: "Bottom-edge opening for J2 Wurth 629104190121 at board (16.0, 34.3)"}
+    - {id: F7, name: USB 2.0 Type-A host port 1, kind: port, view: bottom, center_mm: [37.5, 14.85], size_mm: [14.8, 7.2], implement: pcb+case, source: photo, confidence: high, notes: "Bottom-edge opening for J3 Wurth 629104190121 at board (35.5, 34.3)"}
+    - {id: F8, name: rear CM5 cooling vents, kind: other, view: rear, center_mm: [29.5, 22.0], size_mm: [36.0, 20.0], implement: case, source: photo, confidence: high, notes: "Ventilation slots in back_shell over CM5 module"}
+fab:
+  profile: lioncircuits
+  tier: custom
+  layers: 6
+  thickness_mm: 1.6
+  impedance_control: true
+  stackup_name: "SU-06L-0165-GDM140-001"
+  assembly_sides: [top, bottom]
+  notes: "Lion Circuits Custom tier 6-layer 1.6 mm (1.65 mm finished) PCB with impedance control on Lion standard stack-up SU-06L-0165-GDM140-001 (GDM-140 laminate, Tg 140: Solder mask 0.020 mm Dk=3.8 / L1 F.Cu 1 oz 0.035 mm signal / Prepreg 7628 0.190 mm Dk=4.69 / L2 In1.Cu 0.5 oz 0.0175 mm unbroken GND / Core GDM-140 0.450 mm Dk=4.5 / L3 In2.Cu 0.5 oz 0.0175 mm signal / Prepreg 7628 0.190 mm Dk=4.69 / L4 In3.Cu 0.5 oz 0.0175 mm +5V, VBUS_IN & +3V3 power / Core GDM-140 0.450 mm Dk=4.5 / L5 In4.Cu 0.5 oz 0.0175 mm unbroken GND / Prepreg 7628 0.190 mm Dk=4.69 / L6 B.Cu 1 oz 0.035 mm signal / Solder mask 0.020 mm Dk=3.8). Controlled-impedance pairs: Diff100 (100 ohm +/-10% HDMI0 TMDS and 2-lane MIPI0 CSI-2) edge-coupled microstrip on L1 F.Cu (ref L2 In1.Cu GND) and L6 B.Cu (ref L5 In4.Cu GND) width 0.180 mm / gap 0.1524 mm (stripline on L3 In2.Cu ref L2/L4 width 0.160 mm / gap 0.1524 mm if used); Diff90 (90 ohm +/-10% USB 2.0 OTG USB2_P/N and host USB3_0_DP/DN, USB3_1_DP/DN) edge-coupled microstrip on L1 F.Cu (ref L2 In1.Cu GND) and L6 B.Cu (ref L5 In4.Cu GND) width 0.230 mm / gap 0.1524 mm (or 0.230 mm / 0.209 mm -> 96.2 ohm; stripline on L3 In2.Cu width 0.200 mm / gap 0.1524 mm if used). Order quantity: 10 bare PCBs and 6 assembled boards (PCBA) with Lion Circuits purchasing every soldered SMD component. Compute Module 5 (any eMMC variant such as CM5104016 or CM5104032) is procured outside Lion Circuits, excluded from the Lion BOM, and pressed into J6/J7 at final assembly."
+electrical:
+  mcu: "Compute Module 5 with eMMC (any eMMC variant such as CM5104016 or CM5104032, bought outside Lion Circuits and pressed into dual 100-pin Amphenol 10164227-1001A1RLF mezzanine sockets J6/J7 at final assembly)"
+  power: "USB-C J1 (GCT USB4105-GF-A) 5 V input on VBUS_IN with TI TVS2200DRVR 22 V 1.12 kW flat-clamp unidirectional WSON-6 surge TVS (D4, LCSC C523793, VRWM=22 V tolerating continuous 20 V +/- 5% USB-C PD overvoltage faults without breakdown, VBR=24.6-27.6 V at 1 mA, VCLAMP=27.2 V typ / 27.7 V max at 24 A 8/20 us and 27.6 V typ / 28.0 V max at 40 A 8/20 us <= +28 V U4/U5 abs max, VF=-0.5 V typ clamping negative inductive transient ringing on reversible USB-C J1), C1=2.2 uF (50 V X7R 0805 Samsung CL21B225KBYNNWE, LCSC C6534398, rated at 50 V >= 1.79x D4's 28.0 V maximum clamping voltage), and C4=100 nF (50 V X7R 0402 GRM155R71H104KE14D) immediately adjacent to J1 VBUS pins (2.3 uF nominal / 2.53 uF max at +10% tolerance <= 10 uF USB Type-C cSink limit), routed via wide F.Cu copper polygons (>=1.3-2.0 mm), a dedicated 1 oz (0.035 mm) In3.Cu VBUS_IN plane, and 8 parallel VBUS_IN vias into both ends of two parallel TI TPS259470ARPWR 28.3 mOhm 5.5 A active-current-limiting ideal-diode / OVP eFuses (U4 primary, U5 secondary in TI Figure 8-18 active-standby parallel configuration; combined R_ON(typ) = 14.15 mOhm at 25 C / 21.0 mOhm max at 85 C, with mirror-symmetric 9-via U4.6/U5.6 output arrays, a 1 oz In3.Cu +5V plane with 45 mm combined corridor width, and 5 parallel +5V vias with 0.50 mm B.Cu bus bars at J6 pads 77-87 -> ~2 mOhm total PCB copper+via resistance and ~48 mV typ / ~110 mV max carrier drop at 3.0 A within the 0.25 V total budget to 4.75 V) to downstream +5V; U4 soft-starts via C22=4.7 nF (0.43 V/ms, ~11.7 ms ramp) to isolate CM5 internal PMIC capacitance and carrier +5V bulk reservoir (C30=100 uF and C31=100 uF 10 V Kemet T520B107M010ATE070 KO-CAP polymer tantalum + C9=2.2 uF + C10..C12=3x1.0 uF = 205.2 uF nominal / ~203.5 uF effective, adding only 86 mA during the 0.43 V/ms soft-start ramp) at hot-plug while U4 open-drain AUXOFF (U4.3) holds U5 EN/UVLO (U5.1, net VBUS_U5_EN) low until U4's HFET gate reaches full overdrive (then R15=100 kOhm referenced to upstream VBUS_IN and R16=43 kOhm to GND bias U5 EN/UVLO to 1.50 V at 5.0 V and set V_IN(UVLO_R)=3.99 V / V_IN(UVLO_F)=3.66 V without sensitivity to downstream +5V load droop) and open-drain U5.3 (AUXOFF), U4.4 (~{FLT}), and U5.4 (~{FLT}) on net VBUS_AUXOFF feed CM5 PMIC_Enable (J6 pad 99, net PMIC_ENABLE, pulled up to +5V via CM5's internal 100 kOhm resistor) through RC filter R19=6.8 kOhm (RC0402FR-076K8L) C32=2.2 uF (25 V X7R 0603 GRM188Z71E225KE43D to GND, C_eff >= 1.85 uF typ / 1.68 uF min at 5 V bias and -10% tolerance, setting tau_fall = (100 kOhm || 6.8 kOhm)*C32 = 14.0 ms nominal / 10.7 ms worst-case derated > 2.7x t_ITIMER=3.94 ms so a 3.94 ms low pulse keeps PMIC_ENABLE >= 3.58 V >> 2.0 V VIH_min, and V_LOW=0.37 V < 0.40 V VIL_max), external pull-up R5=1.33 kOhm (RC0402FR-071K33L from +5V to VBUS_AUXOFF), and dual series Schottky diode D12 (Rectron BAT54S, LCSC C408389: Diode 1 Pin 1->3 from VBUS_AUXOFF to PMIC_ENABLE providing fast charge tau_rise = 1.31 kOhm * C32 = 2.88 ms nominal / 2.42 ms effective so PMIC_ENABLE slews 0.4 V->2.0 V in 1.12 ms and recharges 4.4x faster than tau_fall without repetitive-transient ratcheting while reverse-biasing when VBUS_AUXOFF is low, and Diode 2 Pin 3->2 from PMIC_ENABLE to +5V immediately discharging C32 into +5V so J6.99 is never back-driven on rapid +5V collapse) per TI Figure 8-18 ('To downstream enable'); shared divider R12=390 kOhm (>=350 kOhm per TI TPS25947 datasheet) / R13=49.9 kOhm (RC0402FR-0749K9L, LCSC C137969) / R14=107 kOhm (RC0402FR-07107KL, LCSC C138070) sets UVLO_R=4.18 V (UVLO_F=3.83 V) and OVLO_R=6.13 V typ (5.83 V min > 5.50 V USB-PD vSafe5V max, 6.45 V max; OVLO_F=5.62 V typ / 5.33 V min, disconnecting >6.1 V and 20 V USB-C faults), R17=R18=1.33 kOhm (RC0402FR-071K33L, LCSC C276261, >=750 Ohm UL2367) set ILIM(typ)=2.504 A per eFuse (5.00 A combined <= J1 5.0 A VBUS contact rating, ILIM(min)=2.281 A / 4.56 A combined, ILIM(max)=2.731 A) so neither eFuse reaches ILIM(min) under worst-case 60%/40% passive R_ON+PCB sharing up to 2.281 A / 0.60 = 3.80 A (> 3.62 A worst-case system fault load / 3.26 A nominal full load) and active current-limit regulation equalizes sharing up to 5.0 A, and C23=C24=4.7 nF on U4.10 and U5.10 (ITIMER) set the steady-state transient overcurrent blanking window to t_ITIMER=3.94 ms after start-up; J1 CC1/CC2 (J1 pads A5/B5 on connector-side nets C_CC1/C_CC2) routed through TI TPD6S300ARUKR 24 V-tolerant USB Type-C series CC1/CC2 OVP + IEC 61000-4-2 ESD protection IC (U6, LCSC C2876380 in WQFN-20: C_CC1/RPD_G1 pins 4/7 on C_CC1 and C_CC2/RPD_G2 pins 5/6 on C_CC2 providing 24 V-tolerant dead-battery 5.1 kOhm Rd pull-downs before +3V3 rises, VBIAS pin 3 decoupled by C33=100 nF 50 V X7R 0402 GRM155R71H104KE14D on CC_VBIAS, VPWR pin 10 powered from +3V3 and locally decoupled by C34=1 uF 25 V X5R 0402 GRM155R61E105KE11J, open-drain ~{FLT} pin 9 pulled up to +3V3 via R9=100 kOhm RC0402FR-07100KL on CC_FLT_N, and low-R_ON 290 mOhm series OVP FETs with V_OVP=6.0 V typ / 6.2 V max and 70 ns response isolating the system side from 20 V VBUS-to-CC shorts at J1) to protected system-side CC1/CC2 (U6 pins 12/11 to CM5 J6 pads 94/96) with secondary system-side ultra-low-capacitance (0.42 pF typ) TI TPD1E05U06DPYR unidirectional 5.5 V ESD clamps (D5, D6 to GND); USB2_P/N protected by USBLC6-2SC6 (D1) whose pin 5 (VBUS_D1_CLAMP) is locally decoupled to GND by C25=100 nF (50 V X7R 0402) and DC-biased from switched +5V through R20=100 kOhm (RC0402FR-07100KL, keeping D1's upper steering diodes reverse-biased at 5 V for 2.5 pF typ capacitance without peak-rectifying 3.3 V Full-Speed edges while limiting unpowered clamp current to <33 uA when +5V=0 V and isolating from 20 V on VBUS_IN); PWR_BUT (J6 pad 92, internally pulled up to +5V via 10 kOhm on CM5) protected by 5.5 V unidirectional TPD1E05U06DPYR (D7), and nRPIBOOT (J6 pad 93, using CM5's internal 10 kOhm pull-up to +3V3 with no redundant external pull-up) protected by 3.3 V PESD3V3S1BLYL (D8); CM5 internal PMIC supplies +3V3 (routed from J6 pads 84/86 via a 0.50 mm B.Cu bus bar and dedicated +3V3 vias at (18.95, 34.50), (21.50, 34.00), and (22.10, 34.40) into In3.Cu PWR_3V3_ZONE, with GPIO_VREF on J6 pad 78 Kelvin-connected as a zero-current sense branch) and +1V8; USB_VBUS_EN (J7 pad 11, strapped low by 22 kOhm R10 during reset/rpiboot) controls USB-A port 0 switch U2 (AP2553W6-7 on J2) while CM5 GPIO26 (J6 pad 24, net USB1_VBUS_EN with 22 kOhm pull-down R11 to GND and zero capacitive loading) independently controls USB-A port 1 switch U3 (AP2553W6-7 on J3) so U3 defaults OFF in hardware during reset and boot (guaranteeing <= 2.935 A <= 3.0 A peak boot load on 3.0 A non-PD sources before software enables GPIO26), with 43 kOhm ILIM resistors R1/R2 (0.56 A min / 0.615 A typ / 0.68 A max limit per port) and 222 uF nominal / ~207.5 uF effective output capacitance per port (two 100 uF 10 V 70 mOhm Kemet T520B107M010ATE070 KO-CAP polymer tantalum capacitors C26+C27 on USB0_VBUS and C28+C29 on USB1_VBUS plus 22 uF 10 V X5R 0603 MLCCs C2 and C3); TPD12S016PWR (U1, with CT_HPD=+3V3, LS_OE=GND, C12=1 uF on VCC5V, and C8=1 uF on 5V_OUT per TI Section 8.2.1) supplies 55 mA current-limited 5 V and HPD/TMDS ESD protection to HDMI J4 while U1 pins 7-9 (CEC_B/SCL_B/SDA_B) are left open so U1's internal 27 kOhm CEC_B pull-up and 1.75 kOhm DDC pull-ups do not contend with the CM5's onboard 27 kOhm 3.3 V HDMI0_CEC pull-up and fail-safe 1.8 kOhm 5 V HDMI0_SCL/HDMI0_SDA pull-ups, and discrete ultra-low-capacitance (0.42 pF typ) 5.5 V unidirectional TPD1E05U06DPYR ESD protection diodes D9, D10, and D11 protect HDMI0_SCL, HDMI0_SDA, and HDMI0_CEC at J4 pins 15, 16, and 13 (keeping C_SOURCE << 50 pF and preserving HDMI 1.4b 27 kOhm +/- 5% CEC impedance)."
+  blocks:
+    - id: cm5_core
+      purpose: "Compute Module 5 dual 100-pin mezzanine interface (J6 GPIO/Power pins 1-100 at y=37.0 mm fed by 5 parallel +5V vias and 0.50 mm B.Cu bus bars at J6 pads 77-87, J7 High-Speed pins 101-200 at y=3.0 mm), switched +5V bulk reservoir and decoupling (C30=100 uF and C31=100 uF 10 V Kemet T520B107M010ATE070 polymer tantalum + C9=2.2 uF + C10..C12=3x1.0 uF = 205.2 uF nominal / ~203.5 uF effective downstream of U4/U5 eFuses, isolated from J1 at hot-plug), +3V3 to GPIO_VREF strap, UART0 console test pads (GPIO14/GPIO15/GND), and 8x15 mm all-6-layer copper keepout under CM5 PCB antenna"
+      key_parts: ["10164227-1001A1RLF", "9774015960R", "T520B107M010ATE070"]
+      reference: "Compute Module 5 Datasheet & CM5 IO Board Reference Design"
+    - id: usbc_power_boot
+      purpose: "USB-C power and eMMC flashing port (J1 GCT USB4105-GF-A): VBUS to VBUS_IN with TI TVS2200DRVR 22 V flat-clamp unidirectional WSON-6 surge TVS (D4, LCSC C523793, VRWM=22 V for 20 V USB-C fault tolerance, VBR=24.6-27.6 V, VCLAMP=27.2 V typ / 27.7 V max at 24 A and 27.6 V typ / 28.0 V max at 40 A 8/20 us <= +28 V abs max, VF=-0.5 V typ), C1=2.2 uF 50 V X7R 0805 (Samsung CL21B225KBYNNWE, LCSC C6534398, 50 V >= 1.79x D4 28.0 V max clamp), and C4=100 nF 50 V X7R 0402 immediately adjacent to J1 VBUS pads (2.3 uF nominal <= 10 uF cSink limit), routed via wide F.Cu copper polygons, a dedicated 1 oz In3.Cu VBUS_IN plane, and 8 parallel VBUS_IN vias into parallel TI TPS259470ARPWR active-current-limiting ideal-diode OVP eFuses (U4, U5; combined R_ON=14.15 mOhm, mirror-symmetric 9-via +5V output arrays, C22=4.7 nF soft-start, C23=C24=4.7 nF steady-state ITIMER blanking capacitors setting t_ITIMER=3.94 ms, R12=390 kOhm / R13=49.9 kOhm / R14=107 kOhm UVLO_R=4.18 V & OVLO_R=6.13 V typ / 5.83 V min > 5.50 V vSafe5V divider, R15=100 kOhm to VBUS_IN / R16=43 kOhm to GND U4.3 AUXOFF -> U5.1 EN/UVLO staging (V_IN(UVLO_R)=3.99 V), open-drain U5.3 AUXOFF + U4.4/U5.4 ~{FLT} on VBUS_AUXOFF wired with R5=1.33 kOhm pull-up to +5V, D12 BAT54S dual series Schottky diode (1->3 fast charge, 3->2 rapid +5V collapse discharge), R19=6.8 kOhm, and C32=2.2 uF 25 V X7R 0603 (tau_fall>=10.7 ms > 3.94 ms t_ITIMER, tau_rise=2.42 ms, V_LOW=0.37 V) to J6 pad 99 PMIC_Enable on net PMIC_ENABLE per TI Figure 8-18, R17/R18=1.33 kOhm RC0402FR-071K33L setting ILIM(typ)=2.50 A per eFuse / 5.0 A combined <= J1 5.0 A rating and ILIM(min)=2.28 A supporting >=3.80 A > 3.62 A worst-case system load under 60%/40% passive sharing) to +5V; connector-side C_CC1/C_CC2 (J1 pads A5/B5) protected by TI TPD6S300ARUKR 24 V-tolerant series CC1/CC2 OVP + IEC 61000-4-2 ESD + dead-battery Rd protection IC (U6, LCSC C2876380: C_CC1/RPD_G1 pins 4/7 on C_CC1, C_CC2/RPD_G2 pins 5/6 on C_CC2, VBIAS pin 3 with C33=100 nF 50 V X7R 0402 on CC_VBIAS, VPWR pin 10 on +3V3 with C34=1 uF 25 V X5R 0402, ~{FLT} pin 9 pulled up to +3V3 via R9=100 kOhm on CC_FLT_N, and protected system-side CC1/CC2 outputs on pins 12/11 isolating J6 pads 94/96 and secondary 5.5 V unidirectional TPD1E05U06DPYR clamps D5/D6 from 20 V VBUS-to-CC shorts); D+/D- to CM5 USB2_P/N (pins 105/103, pads 5/3 of J7); USB_OTG_ID (pin 101, pad 1 of J7) left unconnected so CM5 internal pull-up selects USB Device/rpiboot mode; USBLC6-2SC6 ESD protection (D1, pin 5 on VBUS_D1_CLAMP locally decoupled to GND by C25=100 nF and DC-biased from +5V via R20=100 kOhm while isolated from VBUS_IN); SW1 on PWR_BUT (pin 92 of J6, 5 V CM5 pull-up domain) protected by 5.5 V TPD1E05U06DPYR (D7); and SW2 behind pinhole on nRPIBOOT (pin 93 of J6, 3.3 V domain via CM5 internal 10 kOhm pull-up) protected by 3.3 V PESD3V3S1BLYL (D8)"
+      key_parts: ["USB4105-GF-A", "TPS259470ARPWR", "TPD6S300ARUKR", "CL21B225KBYNNWE", "BAT54S", "RC0402FR-071K33L", "RC0402FR-076K8L", "RC0402FR-0749K9L", "RC0402FR-07107KL", "USBLC6-2SC6", "TPD1E05U06DPYR", "PESD3V3S1BLYL", "TVS2200DRVR", "PTS526SM15SMTR2LFS", "B3U-1000P"]
+      reference: "Compute Module 5 Datasheet Section 3.4 (USB Boot / rpiboot) & TI TPS25947 Datasheet Figure 8-18"
+    - id: usba_host
+      purpose: "Dual USB 2.0 Type-A host ports (J2, J3 Wurth 629104190121) wired to RP1 USB3-0-D_P/N (pins 134/136, pads 34/36 of J7) and USB3-1-D_P/N (pins 163/65, pads 63/65 of J7), each powered via an AP2553W6-7 current-limited switch (U2, U3) with 43 kOhm ILIM resistors R1/R2 (0.56 A min / 0.615 A typ / 0.68 A max limit per port; full dual-port 2x0.5 A load under peak CM5 compute is supported on 5 V / 5 A USB-PD, while on 5 V / 3.0 A non-PD sources U3.3 on USB1_VBUS_EN is routed to CM5 GPIO26 on J6 pad 24 for independent software port shedding so total hardware-limited peak load is <=2.935 A <= 3.0 A), 222 uF nominal / ~207.5 uF effective low-ESR output bulk+bypass capacitance per port (two 100 uF 10 V 70 mOhm Kemet T520B107M010ATE070 KO-CAP polymer tantalum capacitors C26+C27 on USB0_VBUS and C28+C29 on USB1_VBUS with zero DC-bias derating, plus 22 uF 10 V X5R 0603 MLCC C2 on USB0_VBUS and C3 on USB1_VBUS; >= 167.5 uF worst-case at -20% tolerance >= 120 uF per USB 2.0 Section 7.2.4.1 Table 7-7, charging to 5 V in 1.69 ms typ / 1.85 ms at 0.56 A ILIM_min << 4-15 ms AP2553W6-7 t_Blank), 22 kOhm off-state pull-down R10 on USB_VBUS_EN (pin 111, pad 11 of J7), 22 kOhm off-state pull-down R11 to GND on U3.3 / J6.24 GPIO26 (USB1_VBUS_EN, with zero capacitive load on GPIO26 so U3 defaults OFF in hardware during boot until software enables Port 1), and USBLC6-2SC6 ESD protection"
+      key_parts: ["629104190121", "AP2553W6-7", "RC0402FR-0743KL", "RC0402FR-0722KL", "T520B107M010ATE070", "CL10A226MO7JZNC", "USBLC6-2SC6"]
+      reference: "Compute Module 5 IO Board USB 2.0 Host Reference"
+    - id: hdmi0_out
+      purpose: "Full-size HDMI 0 receptacle (J4 Amphenol 10029449-111RLF) driven by CM5 HDMI0 TMDS lanes (J7 pads 70/72, 76/78, 82/84, 88/90; CM5 pins 170/172, 176/178, 182/184, 188/190) with TPD12S016PWR companion IC (U1: CT_HPD=+3V3 to enable the 55 mA current-limited HDMI0_5V load switch and glitch-filtered HPD_B->HPD_A hotplug buffer, 8-channel matched TMDS ESD protection, and LS_OE=GND to disable the internal DDC/CEC level shifters with C8=1 uF reservoir on 5V_OUT and LS_OE=GND to disable the internal DDC/CEC level shifters while CEC_A/SCL_A/SDA_A are biased at VCCA=+3V3 <= 3.6 V and CEC_B/SCL_B/SDA_B (pins 7-9) are left open so neither U1's internal 27 kOhm CEC_B pull-up nor its 1.75 kOhm DDC pull-ups load the bus; CM5 5 V-tolerant fail-safe open-drain HDMI0_SCL/HDMI0_SDA (internal 1.8 kOhm pull-ups to +5V on J7 pads 100/99) and HDMI0_CEC (internal 27 kOhm pull-up to +3V3 on J7 pad 51) connect directly to J4 pins 15, 16, and 13 and are protected at J4 by local ultra-low-capacitance (0.42 pF typ) 5.5 V unidirectional TPD1E05U06DPYR ESD TVS diodes D9, D10, and D11 to GND, keeping C_SOURCE << 50 pF and preserving the single 27 kOhm +/- 5% HDMI 1.4b CEC pull-up impedance)"
+      key_parts: ["10029449-111RLF", "TPD12S016PWR", "TPD1E05U06DPYR"]
+      reference: "TI TPD12S016 Datasheet Table 1 & CM5 Datasheet Section 2.5.1 / Table 1 (Pins 151, 153, 199, 200)"
+    - id: camera_csi0
+      purpose: "15-pin 1.0 mm right-angle bottom-contact FFC camera socket (J5 Amphenol SFW15R-1STE1LF, LCSC C3168538) placed under the camera with mouth facing +x and pin 1 at the world +y end (board top side, y=8.7 mm, matching camera pin 1), wired with the standard 15-pin 2-lane CSI-2 pinout on CM5 camera port 0 (1 GND, 2 MIPI0_D0_N, 3 MIPI0_D0_P, 4 GND, 5 MIPI0_D1_N, 6 MIPI0_D1_P, 7 GND, 8 MIPI0_C_N, 9 MIPI0_C_P, 10 GND, 11 CAM_GPIO0 with 100 kOhm pull-down R8, 12 CAM_GPIO1 direct with no external pull-down so CM5 internal 15 kOhm pull-up to +3V3 is uncontested, 13 SCL0, 14 SDA0, 15 +3V3; no external pull-ups on SCL0/SDA0 since CM5 and AI Camera include onboard pull-ups), plus four Wurth 9774080243R M2x8.0 mm SMT spacers"
+      key_parts: ["SFW15R-1STE1LF", "9774080243R"]
+      reference: "CM5 IO Board CAM/DISP 0 Reference & Raspberry Pi AI Camera Product Brief p.4"
+  nets_must_connect:
+    - ["J1.A4", "VBUS_IN"]
+    - ["U4.5", "VBUS_IN"]
+    - ["U4.6", "+5V"]
+    - ["U5.5", "VBUS_IN"]
+    - ["U5.6", "+5V"]
+    - ["U5.3", "VBUS_AUXOFF"]
+    - ["U4.4", "VBUS_AUXOFF"]
+    - ["U5.4", "VBUS_AUXOFF"]
+    - ["R19.1", "VBUS_AUXOFF"]
+    - ["R19.2", "PMIC_ENABLE"]
+    - ["C32.1", "PMIC_ENABLE"]
+    - ["J6.99", "PMIC_ENABLE"]
+    - ["J6.24", "USB1_VBUS_EN"]
+    - ["U3.3", "USB1_VBUS_EN"]
+    - ["J1.A5", "C_CC1"]
+    - ["U6.4", "C_CC1"]
+    - ["U6.7", "C_CC1"]
+    - ["U6.12", "CC1"]
+    - ["J6.94", "CC1"]
+    - ["J1.B5", "C_CC2"]
+    - ["U6.5", "C_CC2"]
+    - ["U6.6", "C_CC2"]
+    - ["U6.11", "CC2"]
+    - ["J6.96", "CC2"]
+    - ["J1.A6", "USB2_P"]
+    - ["J1.A7", "USB2_N"]
+    - ["SW1.1", "PWR_BUT"]
+    - ["SW2.1", "nRPIBOOT"]
+    - ["J5.1", "GND"]
+    - ["J5.2", "MIPI0_D0_N"]
+    - ["J5.3", "MIPI0_D0_P"]
+    - ["J5.5", "MIPI0_D1_N"]
+    - ["J5.6", "MIPI0_D1_P"]
+    - ["J5.8", "MIPI0_C_N"]
+    - ["J5.9", "MIPI0_C_P"]
+    - ["J5.11", "CAM_GPIO0"]
+    - ["J5.12", "CAM_GPIO1"]
+    - ["J5.13", "SCL0"]
+    - ["J5.14", "SDA0"]
+    - ["J5.15", "+3V3"]
+  high_speed:
+    - name: usb2_otg
+      nets: ["USB2_P", "USB2_N"]
+      kind: diff_pairs
+      tolerance_mm: 1.0
+      diff_impedance_ohm: 90.0
+      source: "CM5 Datasheet Section 3.4 & Lion SU-06L-0165-GDM140-001 6-layer stackup: USB 2.0 90 ohm differential microstrip on B.Cu/F.Cu over unbroken In4.Cu/In1.Cu 0.5 oz GND plane (0.190 mm 7628 prepreg, Dk=4.69; net class Diff90: width 0.230 mm / gap 0.1524 mm -> 90.2 ohm), intra-pair skew <= 1.0 mm"
+    - name: usb2_host0
+      nets: ["USB3_0_DP", "USB3_0_DN"]
+      kind: diff_pairs
+      tolerance_mm: 1.0
+      diff_impedance_ohm: 90.0
+      source: "CM5 Datasheet Section 3.5 & Lion SU-06L-0165-GDM140-001 6-layer stackup: RP1 USB 2.0 host 0 90 ohm differential microstrip on F.Cu/B.Cu over unbroken In1.Cu/In4.Cu 0.5 oz GND plane (0.190 mm 7628 prepreg, Dk=4.69; net class Diff90: width 0.230 mm / gap 0.1524 mm -> 90.2 ohm), intra-pair skew <= 1.0 mm"
+    - name: usb2_host1
+      nets: ["USB3_1_DP", "USB3_1_DN"]
+      kind: diff_pairs
+      tolerance_mm: 1.0
+      diff_impedance_ohm: 90.0
+      source: "CM5 Datasheet Section 3.5 & Lion SU-06L-0165-GDM140-001 6-layer stackup: RP1 USB 2.0 host 1 90 ohm differential microstrip on B.Cu/F.Cu over unbroken In4.Cu/In1.Cu 0.5 oz GND plane (0.190 mm 7628 prepreg, Dk=4.69; net class Diff90: width 0.230 mm / gap 0.1524 mm -> 90.2 ohm, or 0.209 mm gap -> 96.2 ohm), intra-pair skew <= 1.0 mm"
+    - name: hdmi0_tmds
+      nets: ["HDMI0_TX0_P", "HDMI0_TX0_N", "HDMI0_TX1_P", "HDMI0_TX1_N", "HDMI0_TX2_P", "HDMI0_TX2_N", "HDMI0_CLK_P", "HDMI0_CLK_N"]
+      kind: diff_pairs
+      tolerance_mm: 0.5
+      diff_impedance_ohm: 100.0
+      source: "CM5 Datasheet Section 3.8 & Lion SU-06L-0165-GDM140-001 6-layer stackup: HDMI 100 ohm differential microstrip on F.Cu/B.Cu over unbroken In1.Cu/In4.Cu 0.5 oz GND plane (0.190 mm 7628 prepreg, Dk=4.69; net class Diff100: width 0.180 mm / gap 0.1524 mm -> 101.3 ohm), intra-pair skew <= 0.5 mm"
+    - name: csi0_mipi
+      nets: ["MIPI0_D0_P", "MIPI0_D0_N", "MIPI0_D1_P", "MIPI0_D1_N", "MIPI0_C_P", "MIPI0_C_N"]
+      kind: diff_pairs
+      tolerance_mm: 0.5
+      diff_impedance_ohm: 100.0
+      source: "CM5 Datasheet Section 3.7 & Lion SU-06L-0165-GDM140-001 6-layer stackup: 2-lane MIPI0 CSI-2 100 ohm differential microstrip on B.Cu/F.Cu over unbroken In4.Cu/In1.Cu 0.5 oz GND plane (0.190 mm 7628 prepreg, Dk=4.69; net class Diff100: width 0.180 mm / gap 0.1524 mm -> 101.3 ohm), intra-pair skew <= 0.5 mm"
+board:
+  width_mm: 55.0
+  height_mm: 40.0
+  corner_radius_mm: 3.0
+  mounting_holes:
+    - {x_mm: 3.5, y_mm: 3.5, drill_mm: 4.4, plated: false}
+    - {x_mm: 51.5, y_mm: 3.5, drill_mm: 4.4, plated: false}
+    - {x_mm: 3.5, y_mm: 36.5, drill_mm: 4.4, plated: false}
+    - {x_mm: 51.5, y_mm: 36.5, drill_mm: 4.4, plated: false}
+  placement:
+    - {ref: J1, role: usb_c_power_boot, side: top, x_mm: 51.5, y_mm: 11.5, rot_deg: 90, tolerance_mm: 1.5, feature: F4, mates: "+x", mates_source: "GCT USB4105-GF-A 3D model: mouth faces +x (right board edge x=55.0) at rot_deg=90"}
+    - {ref: J4, role: hdmi0, side: top, x_mm: 49.0, y_mm: 25.0, rot_deg: 90, tolerance_mm: 1.5, feature: F5, mates: "+x", mates_source: "Amphenol 10029449-111RLF 3D model: mouth faces +x (right board edge x=55.0) at rot_deg=90"}
+    - {ref: J2, role: usb_a_0, side: top, x_mm: 16.0, y_mm: 34.3, rot_deg: 0, tolerance_mm: 1.5, feature: F6, mates: "+y", mates_source: "Wurth 629104190121 3D model: mouth faces +y (bottom board edge y=40.0) at rot_deg=0"}
+    - {ref: J3, role: usb_a_1, side: top, x_mm: 35.5, y_mm: 34.3, rot_deg: 0, tolerance_mm: 1.5, feature: F7, mates: "+y", mates_source: "Wurth 629104190121 3D model: mouth faces +y (bottom board edge y=40.0) at rot_deg=0"}
+    - {ref: SW1, role: power_button, side: top, x_mm: 38.5, y_mm: 27.6, rot_deg: 0, tolerance_mm: 1.0, feature: F2, mates: "up", mates_source: "C&K PTS526SM15SMTR2LFS datasheet: top-actuated button pressed along -Z from front_shell (moved below y=7.7..23.7 mm FFC U-turn band)"}
+    - {ref: SW2, role: boot_button, side: top, x_mm: 4.5, y_mm: 10.5, rot_deg: 90, tolerance_mm: 1.0, feature: F3, mates: "up", mates_source: "Omron B3U-1000P datasheet: top-actuated button pressed along -Z through front_shell pinhole"}
+    - {ref: J5, role: csi_camera_ffc, side: top, x_mm: 13.5, y_mm: 15.7, rot_deg: 90, tolerance_mm: 1.5, mates: "+x", mates_source: "Amphenol SFW15R-1STE1LF (LCSC C3168538) 3D model & datasheet: 15-pin 1.0 mm right-angle bottom-contact FFC socket under camera with mouth facing +x (at x_J5+4.85 mm) towards U-turn, long axis along y, and pin 1 at world +y end (board y=8.7 mm)"}
+    - {ref: SP1, role: camera_spacer_tl, side: top, x_mm: 10.5, y_mm: 5.2, rot_deg: 0, tolerance_mm: 0.25, mates: "up", mates_source: "Wurth 9774080243R M2x8.0 mm SMT spacer top face at Z=9.6 mm (with two 0.5 mm M2 washers -> camera underside at Z=10.6 mm)"}
+    - {ref: SP2, role: camera_spacer_tr, side: top, x_mm: 23.0, y_mm: 5.2, rot_deg: 0, tolerance_mm: 0.25, mates: "up", mates_source: "Wurth 9774080243R M2x8.0 mm SMT spacer top face at Z=9.6 mm (with two 0.5 mm M2 washers -> camera underside at Z=10.6 mm)"}
+    - {ref: SP3, role: camera_spacer_bl, side: top, x_mm: 10.5, y_mm: 26.2, rot_deg: 0, tolerance_mm: 0.25, mates: "up", mates_source: "Wurth 9774080243R M2x8.0 mm SMT spacer top face at Z=9.6 mm (with two 0.5 mm M2 washers -> camera underside at Z=10.6 mm)"}
+    - {ref: SP4, role: camera_spacer_br, side: top, x_mm: 23.0, y_mm: 26.2, rot_deg: 0, tolerance_mm: 0.25, mates: "up", mates_source: "Wurth 9774080243R M2x8.0 mm SMT spacer top face at Z=9.6 mm (with two 0.5 mm M2 washers -> camera underside at Z=10.6 mm)"}
+    - {ref: J6, role: cm5_mezzanine_gpio, side: bottom, x_mm: 25.0, y_mm: 37.0, rot_deg: 180, tolerance_mm: 0.25, mates: "down", mates_source: "Amphenol 10164227-1001A1RLF on B.Cu mates downward with CM5 GPIO/power plug (pins 1-100)"}
+    - {ref: J7, role: cm5_mezzanine_hs, side: bottom, x_mm: 25.0, y_mm: 3.0, rot_deg: 180, tolerance_mm: 0.25, mates: "down", mates_source: "Amphenol 10164227-1001A1RLF on B.Cu mates downward with CM5 high-speed plug (pins 101-200)"}
+    - {ref: SP5, role: cm5_spacer_tl, side: bottom, x_mm: 3.5, y_mm: 3.5, rot_deg: 0, tolerance_mm: 0.2, mates: "down", mates_source: "Wurth 9774015960R 1.5 mm spacer on B.Cu mates downward with CM5 M2.5 corner hole"}
+    - {ref: SP6, role: cm5_spacer_tr, side: bottom, x_mm: 51.5, y_mm: 3.5, rot_deg: 0, tolerance_mm: 0.2, mates: "down", mates_source: "Wurth 9774015960R 1.5 mm spacer on B.Cu mates downward with CM5 M2.5 corner hole"}
+    - {ref: SP7, role: cm5_spacer_bl, side: bottom, x_mm: 3.5, y_mm: 36.5, rot_deg: 0, tolerance_mm: 0.2, mates: "down", mates_source: "Wurth 9774015960R 1.5 mm spacer on B.Cu mates downward with CM5 M2.5 corner hole"}
+    - {ref: SP8, role: cm5_spacer_br, side: bottom, x_mm: 51.5, y_mm: 36.5, rot_deg: 0, tolerance_mm: 0.2, mates: "down", mates_source: "Wurth 9774015960R 1.5 mm spacer on B.Cu mates downward with CM5 M2.5 corner hole"}
+  max_component_height_mm:
+    top: 8.5
+    bottom: 1.5
+  stackup:
+    profile: "Lion Circuits SU-06L-0165-GDM140-001 (GDM-140 laminate, Tg 140, 6-layer 1.6 mm nominal / 1.65 mm finished, controlled impedance)"
+    layer_order:
+      - {layer: F.Cu, role: signal, copper_mm: 0.035, notes: "L1 top signal layer (1 oz / 0.035 mm, solder mask 0.020 mm Dk=3.8): HDMI0 TMDS, MIPI0 CSI-2, and USB3_0 high-speed microstrip pairs referenced to unbroken L2 In1.Cu GND, plus wide VBUS_IN and +5V copper polygons"}
+      - {layer: dielectric_1, kind: prepreg, material: "7628", thickness_mm: 0.19, epsilon_r: 4.69}
+      - {layer: In1.Cu, role: gnd_plane, copper_mm: 0.0175, net: GND, notes: "L2 unbroken 0.5 oz (0.0175 mm) solid GND reference plane for F.Cu high-speed pairs and In2.Cu signals"}
+      - {layer: dielectric_2, kind: core, material: "GDM-140", thickness_mm: 0.45, epsilon_r: 4.5, notes: "0.450 mm GDM-140 core (Tg 140, Dk=4.5)"}
+      - {layer: In2.Cu, role: signal, copper_mm: 0.0175, notes: "L3 inner 0.5 oz (0.0175 mm) signal layer for slow/control nets and >=0.80 mm wide power feeds (USB0_VBUS, USB1_VBUS, +3V3 keeping dT <= 10 C on 0.5 oz copper)"}
+      - {layer: dielectric_3, kind: prepreg, material: "7628", thickness_mm: 0.19, epsilon_r: 4.69}
+      - {layer: In3.Cu, role: power_plane, copper_mm: 0.0175, nets: ["+5V", "VBUS_IN", "+3V3"], notes: "L4 0.5 oz (0.0175 mm, 0.99 mOhm/sq at 25 C) power plane: dedicated VBUS_IN plane from J1 to U4.5/U5.5 (8 vias + F.Cu 1 oz parallel polygons), +5V main plane with 45 mm combined corridor width (9 mirror-symmetric vias at U4.6/U5.6 and 5 parallel +5V vias at J6 pads 77-87 -> dT < 2 C at 3-5 A), and +3V3 sub-zone; no high-speed pairs reference In3.Cu"}
+      - {layer: dielectric_4, kind: core, material: "GDM-140", thickness_mm: 0.45, epsilon_r: 4.5, notes: "0.450 mm GDM-140 core (Tg 140, Dk=4.5)"}
+      - {layer: In4.Cu, role: gnd_plane, copper_mm: 0.0175, net: GND, notes: "L5 unbroken 0.5 oz (0.0175 mm) solid GND reference plane for B.Cu high-speed pairs (MIPI0 CSI-2, USB2_P/N, USB3_1, HDMI0 TMDS)"}
+      - {layer: dielectric_5, kind: prepreg, material: "7628", thickness_mm: 0.19, epsilon_r: 4.69}
+      - {layer: B.Cu, role: signal, copper_mm: 0.035, notes: "L6 bottom signal layer (1 oz / 0.035 mm, solder mask 0.020 mm Dk=3.8): CM5 mezzanine pads, MIPI0 CSI-2, USB2 OTG, USB3_1, and HDMI0 high-speed microstrip pairs referenced to unbroken L5 In4.Cu GND"}
+  net_classes:
+    - {name: Default, track_width_mm: 0.1524, clearance_mm: 0.1524, via_diameter_mm: 0.66, via_drill_mm: 0.35, diff_pair_width_mm: 0.18, diff_pair_gap_mm: 0.1524, notes: "Single-ended slow signals (routed on In2.Cu, F.Cu, B.Cu)"}
+    - {name: Power, track_width_mm: 0.5, clearance_mm: 0.1524, via_diameter_mm: 0.66, via_drill_mm: 0.35, notes: "+5V, +3V3, VBUS, and GND power rails (>=0.80 mm on 0.5 oz In2.Cu for USB0_VBUS/USB1_VBUS/+3V3 so dT <= 10 C)"}
+    - {name: Diff100, track_width_mm: 0.18, clearance_mm: 0.1524, via_diameter_mm: 0.66, via_drill_mm: 0.35, diff_pair_width_mm: 0.18, diff_pair_gap_mm: 0.1524, target_zdiff_ohm: 100.0, computed_zdiff_ohm: 101.3, reference_planes: ["In1.Cu (for F.Cu)", "In4.Cu (for B.Cu)"], notes: "100 ohm differential microstrip for HDMI0 TMDS and 2-lane MIPI0 CSI-2 over 0.190 mm 7628 prepreg (Dk=4.69; stripline on In2.Cu: 0.160 mm width / 0.1524 mm gap -> 99.5 ohm)"}
+    - {name: Diff90, track_width_mm: 0.23, clearance_mm: 0.1524, via_diameter_mm: 0.66, via_drill_mm: 0.35, diff_pair_width_mm: 0.23, diff_pair_gap_mm: 0.1524, target_zdiff_ohm: 90.0, computed_zdiff_ohm: 90.2, reference_planes: ["In1.Cu (for F.Cu)", "In4.Cu (for B.Cu)"], notes: "90 ohm differential microstrip for USB2_P/N, USB3_0_DP/DN, and USB3_1_DP/DN over 0.190 mm 7628 prepreg (Dk=4.69; stripline on In2.Cu: 0.200 mm width / 0.1524 mm gap -> 88.7 ohm)"}
+  keepouts:
+    - {id: cm5_wifi_antenna, rect_mm: [0.0, 14.0, 8.0, 29.0], layers: [F.Cu, In1.Cu, In2.Cu, In3.Cu, In4.Cu, B.Cu], reason: "CM5 datasheet requires an 8x15 mm copper-free and component-free zone on all six copper layers directly over the CM5 PCB antenna at the board edge"}
+  height_zones:
+    - id: camera_socket_strip
+      side: top
+      rect_mm: [26.652, 5.895, 32.362, 25.505]
+      max_height_mm: 5.75
+      allow_refs: [J5]
+      reason: "(10.6 mm camera underside - 2.75 mm camera 15-pin socket strip) - 1.6 mm PCB top - 0.5 mm safety margin = 5.75 mm max component height on F.Cu"
+      source: "rea_hardware.parts.ai_camera((20.431, -15.7), z_underside=10.6, rot_deg=90).socket_rect & AI Camera Product Brief p.4"
+    - id: camera_body
+      side: top
+      rect_mm: [8.5, 3.2, 32.362, 28.2]
+      max_height_mm: 6.65
+      allow_refs: [SP1, SP2, SP3, SP4, J5]
+      reason: "(10.6 mm camera underside - 1.85 mm max camera underside component height) - 1.6 mm PCB top - 0.5 mm safety margin = 6.65 mm max component height on F.Cu"
+      source: "rea_hardware.parts.ai_camera((20.431, -15.7), z_underside=10.6, rot_deg=90).outline_rect & AI Camera Product Brief p.4"
+bom:
+  - {refs: [J1], role: usb_c_power_boot, mpn: USB4105-GF-A, lcsc: C3020560, footprint: "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal", description: "GCT 16-pin USB 2.0 Type-C horizontal SMT receptacle"}
+  - {refs: [J2, J3], role: usb_a_host, mpn: "629104190121", lcsc: C2890991, footprint: "lcsc:USB-A-SMD_629104190121", description: "Wurth WR-COM USB 2.0 Type-A horizontal SMT receptacle"}
+  - {refs: [J4], role: hdmi0, mpn: 10029449-111RLF, lcsc: C427307, footprint: "lcsc:HDMI-SMD_10029449-001RLF", description: "Amphenol full-size HDMI Type-A right-angle SMT receptacle"}
+  - {refs: [J5], role: csi_camera_ffc, mpn: SFW15R-1STE1LF, lcsc: C3168538, footprint: "lcsc:CONN-SMD_15P-P0.50_SFW15R-1STE1LF", description: "Amphenol 15-pin 1.0 mm right-angle bottom-contact ZIF FFC socket"}
+  - {refs: [J6, J7], role: cm5_mezzanine, mpn: 10164227-1001A1RLF, lcsc: C6782225, footprint: "lcsc:CONN-SMD_100P-P0.40_10164227-1001A1RLF", description: "Amphenol 100-pin 0.4 mm pitch mezzanine receptacle, 1.5 mm stack height"}
+  - {refs: [U1], role: hdmi_companion, mpn: TPD12S016PWR, lcsc: C201665, footprint: "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm", description: "TI HDMI companion IC with 55 mA 5V load switch, HPD glitch filter/buffer, and 8-ch TMDS ESD protection (LS_OE=GND and CEC_B/SCL_B/SDA_B open)"}
+  - {refs: [U2, U3], role: usb_vbus_switch, mpn: AP2553W6-7, lcsc: C212302, footprint: "Package_TO_SOT_SMD:SOT-23-6", description: "Diodes Inc 2.1A current-limited USB high-side power switch"}
+  - {refs: [U4, U5], role: vbus_efuse_parallel, mpn: TPS259470ARPWR, lcsc: C3662799, footprint: "lcsc:VQFN-10_L2.0-W2.0-P0.45-TL", description: "TI 2.7-23V 28.3 mOhm 5.5A ideal-diode OVP eFuse in parallel active-standby pair (combined R_ON=14.15 mOhm < 15 mOhm)"}
+  - {refs: [U6], role: usbc_cc_ovp_esd, mpn: TPD6S300ARUKR, lcsc: C2876380, footprint: "lcsc:WQFN-20_L3.0-W3.0-P0.40-TL-EP1.7", description: "TI 24V-tolerant USB Type-C CC1/CC2 series OVP FETs (V_OVP=6.0V typ, 290 mOhm R_ON) + IEC 61000-4-2 ESD protection + dead-battery Rd pull-downs isolating CM5 J6.94/J6.96 and D5/D6 from 20V VBUS-to-CC shorts"}
+  - {refs: [D1, D2, D3], role: usb_esd, mpn: USBLC6-2SC6, lcsc: C7519, footprint: "Package_TO_SOT_SMD:SOT-23-6", description: "STMicroelectronics low-capacitance dual USB 2.0 ESD protection array"}
+  - {refs: [D4], role: vbus_surge_tvs, mpn: TVS2200DRVR, lcsc: C523793, footprint: "lcsc:WSON-6_L2.0-W2.0-P0.65-TL-EP", description: "TI 22V 1.12kW flat-clamp unidirectional WSON-6 surge TVS on VBUS_IN (VRWM=22V for 20V USB-C fault tolerance, VBR=24.6-27.6V, VCLAMP=27.2V typ / 27.7V max at 24A and 27.6V typ / 28.0V max at 40A 8/20us <= +28V U4/U5 abs max, VF=-0.5V typ)"}
+  - {refs: [D5, D6, D7, D9, D10, D11], role: cc_pwrbut_hdmi_esd_5v, mpn: TPD1E05U06DPYR, lcsc: C436349, footprint: "lcsc:X1SON-2_L1.0-W0.6-P0.65-RD-1", description: "TI 5.5V unidirectional X1SON-2 ultra-low-capacitance (0.42 pF typ / 0.50 pF max) ESD protection diode on protected system-side CC1/CC2 downstream of U6 OVP FETs (D5, D6), 5V-biased PWR_BUT (D7), and HDMI0_SCL/HDMI0_SDA/HDMI0_CEC at J4 (D9, D10, D11; keeping DDC C_SOURCE << 50 pF and isolating CEC from U1.7 27 kOhm pull-up)"}
+  - {refs: [D8], role: boot_esd_3v3, mpn: PESD3V3S1BLYL, lcsc: C552521, footprint: "lcsc:DFN1006-2L-BI", description: "Nexperia 3.3V bidirectional DFN1006-2 ESD protection diode on 3.3V-biased nRPIBOOT (SW2)"}
+  - {refs: [R1, R2, R16], role: usb_ilim_and_auxoff_bot_43k, mpn: RC0402FR-0743KL, lcsc: C185415, footprint: "lcsc:R0402", description: "Yageo 43 kOhm 1% 0402 resistor for U2/U3 current limit (0.56 A min / 0.615 A typ / 0.68 A max) and U5 EN/UVLO bottom divider (R16, setting V_IN(UVLO_R)=3.99 V with R15=100 kOhm to VBUS_IN)"}
+  - {refs: [D12], role: pmic_enable_fast_charge_and_discharge_schottky, mpn: BAT54S, lcsc: C408389, footprint: "lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR", description: "Rectron 30V 200mA dual series Schottky barrier diode in SOT-23 (Pin 1->3 fast charge from VBUS_AUXOFF to PMIC_ENABLE giving tau_rise=2.42 ms << tau_fall=10.7 ms; Pin 3->2 rapid +5V collapse discharge from PMIC_ENABLE to +5V preventing J6.99 back-drive)"}
+  - {refs: [R8, R9, R15, R20], role: pulldown_ccflt_auxoff_and_d1_bias_100k, mpn: RC0402FR-07100KL, lcsc: C60491, footprint: "lcsc:R0402", description: "Yageo 100 kOhm 1% 0402 resistor for CAM_GPIO0 pull-down (R8), U6.9 ~{FLT} pull-up to +3V3 on CC_FLT_N (R9), U5 EN/UVLO top pull-up to VBUS_IN (R15), and D1.5 VBUS_D1_CLAMP DC bias pull-up to +5V (R20)"}
+  - {refs: [R6, R7, R10, R11], role: usb_fault_pullup_and_en_pulldown_22k, mpn: RC0402FR-0722KL, lcsc: C82868, footprint: "lcsc:R0402", description: "Yageo 22 kOhm 1% 0402 resistor (shared BOM line) for USB0_FAULT_N and USB1_FAULT_N pull-ups to +3V3 (R6, R7) and off-state pull-downs to GND on USB_VBUS_EN (R10, U2.3) and USB1_VBUS_EN (R11, U3.3 / J6.24 GPIO26 so USB-A port 1 defaults OFF at boot)"}
+  - {refs: [R12], role: uvlo_ovlo_top, mpn: RC0402FR-07390KL, lcsc: C163467, footprint: "lcsc:R0402", description: "Yageo 390 kOhm 1% 0402 top UVLO/OVLO divider resistor on VBUS_IN (>=350 kOhm per TI TPS25947 datasheet)"}
+  - {refs: [R13], role: uvlo_ovlo_mid, mpn: RC0402FR-0749K9L, lcsc: C137969, footprint: "lcsc:R0402", description: "Yageo 49.9 kOhm 1% 0402 middle UVLO/OVLO divider resistor (setting UVLO_R=4.18 V, OVLO_R=6.13 V typ / 5.83 V min > 5.50 V vSafe5V)"}
+  - {refs: [R14], role: uvlo_ovlo_bot, mpn: RC0402FR-07107KL, lcsc: C138070, footprint: "lcsc:R0402", description: "Yageo 107 kOhm 1% 0402 bottom UVLO/OVLO divider resistor (setting UVLO_R=4.18 V, OVLO_R=6.13 V typ / 5.83 V min, OVLO_F=5.62 V typ / 5.33 V min)"}
+  - {refs: [R5, R17, R18], role: efuse_ilim_and_auxoff_pullup_1k33, mpn: RC0402FR-071K33L, lcsc: C276261, footprint: "lcsc:R0402", description: "Yageo 1.33 kOhm 1% 0402 resistor for U4/U5 current limit (R17, R18: ILIM(typ)=2.50 A per channel / 5.00 A combined <= J1 5.0 A rating, ILIM(min)=2.28 A supporting >=3.80 A > 3.62 A worst-case system load under 60%/40% passive sharing, UL2367 >=750 Ohm) and VBUS_AUXOFF fast-charge pull-up to +5V (R5, setting tau_rise=2.42 ms via D12.1->3)"}
+  - {refs: [R19], role: pmic_enable_rc_filter_6k8, mpn: RC0402FR-076K8L, lcsc: C93940, footprint: "lcsc:R0402", description: "Yageo 6.8 kOhm 1% 0402 series RC discharge filter resistor on VBUS_AUXOFF -> PMIC_ENABLE (tau_fall=14.0 ms nom / 10.7 ms min derated > 3.94 ms t_ITIMER with C32=2.2 uF, V_LOW=0.37 V < 0.40 V)"}
+  - {refs: [C1], role: vbus_in_bypass_2u2_50v, mpn: CL21B225KBYNNWE, lcsc: C6534398, footprint: "lcsc:C0805", description: "Samsung 2.2 uF 50V X7R 0805 MLCC on VBUS_IN (50V rating >= 1.79x D4 TVS2200DRVR 28.0V max clamping voltage, keeping unswitched cSink at 2.3 uF nominal <= 10 uF)"}
+  - {refs: [C9, C32], role: vbus_5v_bypass_and_pmic_filter_2u2, mpn: GRM188Z71E225KE43D, lcsc: C415535, footprint: "lcsc:C0603", description: "Murata 2.2 uF 25V X7R 0603 MLCC on switched +5V (C9) and PMIC_ENABLE blanking filter (C32, C_eff>=1.68 uF at 5V giving tau_fall>=10.7 ms > 3.94 ms t_ITIMER)"}
+  - {refs: [C2, C3, C19], role: usb_vbus_and_cam_22uf, mpn: CL10A226MO7JZNC, lcsc: C2762594, footprint: "lcsc:C0603", description: "Samsung 22 uF 16V/10V X5R 0603 MLCC (CL10A226MO7JZNC 16V in-stock primary / CL10A226MP8NUNE 10V equivalent) for USB0_VBUS (C2) and USB1_VBUS (C3, HF bypass alongside C26..C29 giving ~207.5 uF effective per port >= 120 uF USB 2.0 C_PB) and J5 +3V3 camera bulk decoupling (C19)"}
+  - {refs: [C4, C5, C6, C7, C20, C21, C25, C33], role: decoupling_100nf, mpn: GRM155R71H104KE14D, lcsc: C77020, footprint: "lcsc:C0402", description: "Murata 100 nF 50V X7R 0402 MLCC for VBUS_IN/+5V/+3V3/+1V8 rail decoupling (C4..C7, C20, C21), D1 pin 5 local ESD clamp bypass (C25 on VBUS_D1_CLAMP), and U6.3 VBIAS 50V X7R ESD support capacitor (C33 on CC_VBIAS)"}
+  - {refs: [C8, C10, C11, C12, C34], role: local_5v_and_vpwr_bypass_1uf, mpn: GRM155R61E105KE11J, lcsc: C77009, footprint: "lcsc:C0402", description: "Murata 1 uF 25V X5R 0402 MLCC for U1.13 5V_OUT output reservoir (C8 on HDMI0_5V per TI TPD12S016 Section 8.2.1), U2, U3, U1.11 VCC5V local +5V input bypass (C10..C12), and U6.10 VPWR +3V3 local bypass (C34 per TI TPD6S300A Section 7.4)"}
+  - {refs: [C22, C23, C24], role: efuse_dvdt_and_itimer_4n7, mpn: GRM155R71H472KA01D, lcsc: C77024, footprint: "lcsc:C0402", description: "Murata 4.7 nF 50V X7R 0402 capacitor for U4 dV/dt soft-start (C22, 0.43 V/ms, 11.7 ms ramp) and U4/U5 ITIMER transient blanking (C23, C24, t_ITIMER=3.94 ms)"}
+  - {refs: [SW1], role: power_button, mpn: PTS526SM15SMTR2LFS, lcsc: C2689538, footprint: "Button_Switch_SMD:SW_SPST_PTS526", description: "C&K 5.2x5.2x1.5 mm gull-wing SMT tactile switch"}
+  - {refs: [SW2], role: boot_button, mpn: B3U-1000P, lcsc: C231329, footprint: "Button_Switch_SMD:SW_SPST_B3U-1000P", description: "Omron 3.0x2.5x1.6 mm subminiature SMT tactile switch"}
+  - {refs: [SP1, SP2, SP3, SP4], role: camera_spacer, mpn: 9774080243R, lcsc: C7495116, footprint: "Mounting_Wuerth:Mounting_Wuerth_WA-SMSI-M2_H8mm_9774080243", description: "Wurth WA-SMSI M2 internal thread 8.0 mm SMT steel spacer"}
+  - {refs: [SP5, SP6, SP7, SP8], role: cm5_spacer, mpn: 9774015960R, lcsc: C27626588, footprint: "Mounting_Wuerth:Mounting_Wuerth_WA-SMST-3.3mm_H1.5mm_9774015960", description: "Wurth WA-SMST 3.3 mm ID unthreaded 1.5 mm SMT steel spacer"}
+  - {refs: [C26, C27, C28, C29, C30, C31], role: usb_vbus_and_5v_bulk_100uf, mpn: T520B107M010ATE070, lcsc: C600583, footprint: "lcsc:CAP-SMD_L3.5-W2.8", description: "Kemet 100 uF 10V 70 mOhm KO-CAP Case B (3528-21) polymer tantalum bulk capacitor with zero DC-bias derating: 2x per USB-A host port (C26+C27 on USB0_VBUS, C28+C29 on USB1_VBUS -> ~207.5 uF effective per port >= 120 uF USB 2.0 Section 7.2.4.1 C_PB) and 2x on switched +5V rail (C30+C31 -> ~203.5 uF effective bulk reservoir)"}
+purchased:
+  - id: cm5
+    description: "Compute Module 5 with eMMC (any eMMC variant such as CM5104016 or CM5104032; bought outside Lion Circuits, excluded from the Lion PCBA BOM, and pressed into J6/J7 at final assembly)"
+    url: "https://www.raspberrypi.com/products/compute-module-5/"
+    datasheet: "https://datasheets.raspberrypi.com/cm5/cm5-datasheet.pdf"
+    dims_mm: [55.0, 40.0, 4.62]
+    position_mm: [0.0, -40.0, -5.02]
+    connects_to: pcba
+    dims_source: "Compute Module 5 Datasheet mechanical drawing & rea-hw ref cm5 (hardware/rea_refs.3dshapes/CM5_module.stl, 55.0 x 40.0 x 4.62 mm seated 1.5 mm below carrier B.Cu)"
+    model: case/purchased/cm5.stl
+    color: "#2b6b3a"
+  - id: ai_camera
+    description: "12 MP IMX500 Intelligent Vision Camera Module"
+    mpn: SC1174
+    url: "https://www.lioncircuits.com/parts"
+    datasheet: "https://datasheets.raspberrypi.com/ai-camera/ai-camera-product-brief.pdf"
+    dims_mm: [23.862, 25.0, 11.9]
+    position_mm: [8.5, -28.2, 7.85]
+    connects_to: pcba
+    dims_source: "rea_hardware.parts.ai_camera((20.431, -15.7), z_underside=10.6, rot_deg=90) from AI Camera Product Brief p.4 (25.0 x 23.862 mm board rotated 90 deg -> [23.862, 25.0, 11.9] mm box from Z=7.85 mm socket bottom to Z=19.75 mm lens front; underside at Z=10.6 mm on 8.0 mm spacers + two 0.5 mm M2 washers)"
+    model: case/purchased/ai_camera.stl
+    color: "#1e5b3a"
+    connectors:
+      - id: J_CAM
+        at_mm: [32.362, -15.7, 9.225]
+        pins: 15
+        pitch_mm: 1.0
+        kind: "fpc 15 x 1.0 mm ZIF, contacts towards the camera board"
+        mouth: [1.0, 0.0, 0.0]
+        long_axis: [0.0, 1.0, 0.0]
+        contacts_face: [0.0, 0.0, 1.0]
+        pin1_mm: [32.362, -8.7, 9.225]
+    lens:
+      at_mm: [23.0, -15.7, 19.75]
+      axis: [0.0, 0.0, 1.0]
+      h_axis: [0.0, 1.0, 0.0]
+      hfov_deg: 66.3
+      vfov_deg: 52.3
+      tol_deg: 3.0
+      diameter_mm: 5.75
+  - id: m2_washers
+    description: "Eight flat M2 x 0.5 mm nylon washers (two per spacer, 1.0 mm stack height, OD 4.0 mm, ID 2.2 mm) placed atop SP1..SP4"
+    url: "https://www.mcmaster.com/90295A080/"
+    dims_mm: [16.5, 25.0, 1.0]
+    position_mm: [8.5, -28.2, 9.6]
+    dims_source: "DIN 125 M2 flat washer specification: two 0.5 mm washers per spacer (1.0 mm stack at Z=9.6..10.6 mm) on the rotated 12.5 x 21.0 mm camera hole pattern"
+    model: case/purchased/m2_washers.stl
+    color: "#e6e6e6"
+  - id: camera_m2_screws
+    description: "Four Essentra M2 x 4 mm pan-head nylon screws fastening ai_camera through m2_washers into SP1..SP4"
+    mpn: 50M020040N003
+    url: "https://www.lioncircuits.com/parts"
+    dims_mm: [16.5, 25.0, 5.2]
+    position_mm: [8.5, -28.2, 7.72]
+    dims_source: "Essentra 50M020040N003 drawing: M2 x 4.0 mm threaded shank (Z=7.72..11.72 mm, engaging 1.88 mm >= 1.8 mm of thread inside SP1..SP4 below 1.12 mm camera PCB + 1.0 mm washers) + 1.2 mm pan head (OD 3.8 mm, Z=11.72..12.92 mm)"
+    model: case/purchased/camera_m2_screws.stl
+    color: "#f2f2f2"
+  - id: m25_inserts
+    description: "Four M2.5 x 3.5 mm brass heat-set threaded inserts (OD 3.5 mm) pressed into back_shell corner bosses"
+    url: "https://www.mcmaster.com/94180A321/"
+    dims_mm: [51.5, 36.5, 3.5]
+    position_mm: [1.75, -38.25, -6.5]
+    dims_source: "CNC Kitchen / McMaster M2.5 short heat-set insert: 3.5 mm OD, 3.5 mm length at the 48.0 x 33.0 mm CM5 hole pattern"
+    model: case/purchased/m25_inserts.stl
+    color: "#d4af37"
+  - id: m25_screws
+    description: "Four M2.5 x 8 mm pan-head machine screws passing from carrier top through SP5..SP8 and the module into m25_inserts"
+    url: "https://www.mcmaster.com/92000A065/"
+    dims_mm: [52.5, 37.5, 9.8]
+    position_mm: [1.25, -38.75, -6.4]
+    dims_source: "ISO 7045 M2.5 x 8 mm screw: 8.0 mm shank (Z=-6.4..1.6 mm) + 1.8 mm head (OD 4.5 mm, Z=1.6..3.4 mm) at 48.0 x 33.0 mm hole pattern"
+    model: case/purchased/m25_screws.stl
+    color: "#b8bec4"
+enclosure:
+  process: fdm
+  wall_mm: 2.0
+  clearance_floor_mm: 0.2
+  pair_floors_mm:
+    "ai_camera:pcba": 0.5
+  parts:
+    - {id: back_shell, file: case/out/back_shell.stl, role: shell, process: fdm, material: PLA, finish: as-printed, color: "#2b2e34", description: "Rear FDM half with four M2.5 heat-set insert bosses, ventilation slots over CM5, and snap-fit catches"}
+    - {id: front_shell, file: case/out/front_shell.stl, role: shell, process: fdm, material: PLA, finish: as-printed, color: "#363a42", description: "Front FDM half (extended to Z=+20.0 mm) with FOV-clearing camera lens window, relocated power button bezel, BOOT pinhole, smooth clearance for 50 mm FFC U-turn, port cutouts, and snap-fit hooks"}
+    - {id: power_button, file: case/out/power_button.stl, role: button, process: fdm, material: PLA, finish: as-printed, color: "#d94f2b", description: "Captive front push button cap actuating SW1 at board (38.5, 27.6)"}
+    - {id: boot_pin, file: case/out/boot_pin.stl, role: button, process: fdm, material: PLA, finish: as-printed, color: "#7c828d", description: "Recessed pinhole plunger over SW2 for paperclip rpiboot actuation"}
+assembly:
+  - {part: front_shell, travel_mm: 0, held_by: base, note: "Front enclosure shell inverted on assembly fixture (first-article sub-assembly: plug 50 mm 686615050001 FFC into camera J_CAM first, close J5's latch with camera lifted, fold 180 deg U-turn and screw camera down onto all four spacers without rocking; before first power, check with a meter that J5 pin 15 (+3V3) reaches camera pin 15 and J5 pin 1 reaches camera pin 1)"}
+  - {part: power_button, direction: [0, 0, 1], travel_mm: 25, held_by: captured, may_touch: [front_shell], note: "Captive power button cap seated into front_shell bore at (38.5, -27.6)"}
+  - {part: boot_pin, direction: [0, 0, 1], travel_mm: 25, held_by: captured, may_touch: [front_shell], note: "Captive boot pinhole plunger seated into front_shell pinhole"}
+  - {part: camera_m2_screws, direction: [0, 0, 1], travel_mm: 30, held_by: captured, may_touch: [front_shell], note: "Four M2x4 nylon screws positioned for AI Camera mounting (1.88 mm thread engagement in SP1..SP4)"}
+  - {part: ai_camera, direction: [0, 0, 1], travel_mm: 35, held_by: captured, may_touch: [front_shell, camera_m2_screws], note: "AI Camera (rot_deg=90) seated over M2 screws with lens barrel aligned in front window"}
+  - {part: m2_washers, direction: [0, 0, 1], travel_mm: 35, held_by: captured, may_touch: [ai_camera, camera_m2_screws], note: "Eight 0.5 mm flat M2 washers (two per spacer, 1.0 mm stack) placed on M2 screw shanks against AI Camera"}
+  - {part: m25_screws, direction: [0, 0, 1], travel_mm: 40, held_by: captured, may_touch: [front_shell], note: "Four M2.5x8 machine screws positioned in corner counterbores"}
+  - {part: pcba, direction: [0, 0, 1], travel_mm: 40, held_by: captured, may_touch: [front_shell, m25_screws, m2_washers, camera_m2_screws, power_button, boot_pin], note: "Carrier PCBA seated onto 8.0 mm camera spacers SP1..SP4, buttons, and corner screw shanks"}
+  - {part: cm5, direction: [0, 0, 1], travel_mm: 45, held_by: captured, may_touch: [pcba, m25_screws], note: "Compute Module 5 (any eMMC variant such as CM5104016 or CM5104032, bought outside Lion Circuits and excluded from Lion BOM) pressed onto J6/J7 and SP5..SP8 at final assembly"}
+  - {part: m25_inserts, direction: [0, 0, 1], travel_mm: 45, held_by: captured, may_touch: [cm5, m25_screws], note: "Four M2.5 heat-set inserts engaged on M2.5 screw shanks"}
+  - {part: back_shell, direction: [0, 0, 1], travel_mm: 50, held_by: snap, held_with: [front_shell], may_touch: [front_shell, cm5, m25_inserts, m25_screws], note: "Rear shell snaps onto front_shell, capturing CM5 and heat-set inserts"}
+cables:
+  - id: camera_fpc
+    kind: ffc
+    a: {part: pcba, connector: J5, contacts_face: [0.0, 0.0, -1.0]}
+    b: {part: ai_camera, connector: J_CAM}
+    pins: 15
+    pitch_mm: 1.0
+    length_mm: 50.0
+    width_mm: 16.0
+    min_bend_radius_mm: 3.0
+    stiff_end_mm: 6.0
+    contacts: same
+    mpn: "686615050001"
+    url: "https://www.we-online.com/components/products/datasheet/686615050001.pdf"
+    note: "Wurth 686615050001 15-way 1.0 mm pitch 50 mm +/- 3 mm same-side (Type 1) FFC cable (16 mm wide, 10 mm stiffeners with 5 mm contact strips, 0.3 mm thick): leaves J_CAM heading +x (contacts up, pin 1 at Y=-8.7 mm), makes one 180 deg U-turn of >= 3.37 mm radius (outer x=43.73 mm <= 44 mm, clearing D1/D4-D6/C1/C4, J1, and J4), and runs -x under the camera into bottom-contact J5 (contacts down [0,0,-1], pin 1 at Y=-8.7 mm)"
+    route:
+      - {at_mm: [23.500, -15.70, 2.925]}
+      - {at_mm: [24.436, -15.70, 3.040]}
+      - {at_mm: [25.372, -15.70, 3.370]}
+      - {at_mm: [26.308, -15.70, 3.875]}
+      - {at_mm: [27.244, -15.70, 4.495]}
+      - {at_mm: [28.181, -15.70, 5.155]}
+      - {at_mm: [29.117, -15.70, 5.775]}
+      - {at_mm: [30.053, -15.70, 6.280]}
+      - {at_mm: [30.989, -15.70, 6.610]}
+      - {at_mm: [31.925, -15.70, 6.725]}
+      - {at_mm: [32.861, -15.70, 6.610]}
+      - {at_mm: [33.797, -15.70, 6.280]}
+      - {at_mm: [34.733, -15.70, 5.775]}
+      - {at_mm: [35.669, -15.70, 5.155]}
+      - {at_mm: [36.606, -15.70, 4.495]}
+      - {at_mm: [37.542, -15.70, 3.875]}
+      - {at_mm: [38.478, -15.70, 3.370]}
+      - {at_mm: [39.414, -15.70, 3.040]}
+      - {at_mm: [40.350, -15.70, 2.925]}
+      - {at_mm: [41.311, -15.70, 3.063]}
+      - {at_mm: [42.195, -15.70, 3.467]}
+      - {at_mm: [42.929, -15.70, 4.103]}
+      - {at_mm: [43.454, -15.70, 4.920]}
+      - {at_mm: [43.728, -15.70, 5.852]}
+      - {at_mm: [43.728, -15.70, 6.823]}
+      - {at_mm: [43.454, -15.70, 7.755]}
+      - {at_mm: [42.929, -15.70, 8.572]}
+      - {at_mm: [42.195, -15.70, 9.208]}
+      - {at_mm: [41.311, -15.70, 9.612]}
+      - {at_mm: [40.350, -15.70, 9.750]}
+actuators:
+  - id: A_PWR
+    feature: F2
+    case_part: power_button
+    target: {part: pcba, ref: SW1}
+    kind: push
+    element_axis: [0, 0, -1]
+    travel_mm: 0.25
+    source: "C&K PTS526SM15SMTR2LFS datasheet: top-actuated SPST tactile switch, 1.5 mm height, 0.25 mm travel"
+  - id: A_BOOT
+    feature: F3
+    case_part: boot_pin
+    target: {part: pcba, ref: SW2}
+    kind: push
+    element_axis: [0, 0, -1]
+    travel_mm: 0.20
+    source: "Omron B3U-1000P datasheet: top-actuated subminiature tactile switch, 1.6 mm height, 0.20 mm travel"
+requirements:
+  - {id: R1, text: "Carrier board exactly the size of the CM5 (55 x 40 mm, 3.0 mm corner radius, four M2.5 holes 3.5 mm in, 6 layers, 1.6 mm, Custom tier with impedance control) fabricated and assembled by Lion Circuits", how_met: "55.0 x 40.0 mm 6-layer 1.6 mm PCB on fab.profile=lioncircuits (Custom tier with impedance control on Lion's published 6-layer 1.6 mm stack-up: F.Cu signal / In1.Cu GND / In2.Cu signal / In3.Cu +5V & +3V3 power / In4.Cu GND / B.Cu signal) with 3.0 mm corners, M2.5 corner mounting holes, 2-up assembly panelization, and 6-layer fab package/BOM/CPL; every soldered BOM part verified in stock in Lion's live catalogue", quantity: "55 x 40 x 1.6 mm, 6 layers"}
+  - {id: R2, text: "Compute Module 5 (any eMMC variant such as CM5104016 or CM5104032, bought outside Lion Circuits and excluded from Lion BOM) plugged in underneath on two separate Amphenol 10164227-1001A1RLF 1.5 mm mezzanine footprints and four 1.5 mm Wurth 9774015960R spacers; nothing on bottom > 1.5 mm and no through-hole leads poking through; 8x15 mm copper/part keepout over CM5 Wi-Fi antenna across all six copper layers", how_met: "J6 and J7 placed as separate 10164227-1001A1RLF footprints on B.Cu alongside SP5..SP8 (9774015960R); all other components are SMD on F.Cu; cm5_wifi_antenna keepout (8x15 mm) on all six copper layers (F.Cu, In1.Cu, In2.Cu, In3.Cu, In4.Cu, B.Cu) at left board edge", quantity: "1.5 mm stack, 8 x 15 mm 6-layer antenna keepout"}
+  - {id: R3, text: "USB-C power and rpiboot flashing on GCT USB4105-GF-A with low-drop (<=0.10 V carrier drop at 3 A, within 0.25 V total budget to 4.75 V) soft-started ideal-diode / OVP load switch isolating CM5 bulk capacitance (cSink <= 10 uF), CC1/CC2 to CM5 CC1/CC2, D+/D- to CM5 USB 2.0 OTG port, and ESD protection", how_met: "J1 (USB4105-GF-A) feeds VBUS_IN (with C1=2.2 uF 50 V X7R 0805 CL21B225KBYNNWE + C4=100 nF 50 V X7R 0402 = 2.3 uF nominal cSink <= 10 uF, both rated at 50 V >= 1.79x D4's 28.0 V max clamp, and TI TVS2200DRVR 22 V flat-clamp unidirectional WSON-6 surge TVS D4 on VBUS_IN tolerating 20 V USB-C faults with VRWM=22 V and clamping at 27.2 V typ / 27.7 V max at 24 A and 27.6 V typ / 28.0 V max at 40 A 8/20 us <= +28 V abs max and VF=-0.5 V typ) via wide F.Cu copper polygons, a dedicated 1 oz In3.Cu VBUS_IN plane, and 8 parallel VBUS_IN vias into two parallel TI TPS259470ARPWR active-current-limiting ideal-diode OVP eFuses (U4, U5; combined R_ON=14.15 mOhm typ / 21.0 mOhm max, ~2 mOhm PCB copper+via resistance with mirror-symmetric 9-via U4.6/U5.6 output arrays, 1 oz In3.Cu +5V plane, and 5 parallel +5V vias at J6 pads 77-87 -> ~48 mV typ / ~110 mV max carrier drop at 3 A, C22=4.7 nF soft-start isolating CM5 +5V bulk capacitance at hot-plug while U4.3 AUXOFF stages U5.1 EN/UVLO via R15=100k to VBUS_IN / R16=43k to GND and open-drain U5.3 AUXOFF + U4.4/U5.4 ~{FLT} on VBUS_AUXOFF feed J6.99 PMIC_Enable with R5=1.33k pull-up to +5V, D12 BAT54S dual series Schottky diode (1->3 fast charge, 3->2 rapid +5V collapse discharge), R19=6.8k, and C32=2.2 uF 25 V X7R 0603 (tau_fall>=10.7 ms > 3.94 ms t_ITIMER, tau_rise=2.42 ms, V_LOW=0.37 V) per TI Figure 8-18, C23=C24=4.7 nF steady-state ITIMER blanking capacitors setting t_ITIMER=3.94 ms, R12=390k / R13=49.9k / R14=107k setting UVLO_R=4.18 V and OVLO_R=6.13 V typ / 5.83 V min > 5.50 V vSafe5V disconnecting >6.1 V and 20 V faults, R17=R18=1.33 kOhm RC0402FR-071K33L setting ILIM(typ)=2.50 A per eFuse / 5.0 A combined <= J1 5.0 A rating and ILIM(min)=2.28 A supporting >=3.80 A > 3.62 A worst-case system load under 60%/40% passive sharing), routes J1 CC1/CC2 (C_CC1/C_CC2) through TI TPD6S300ARUKR 24 V-tolerant series CC1/CC2 OVP + IEC 61000-4-2 ESD + dead-battery Rd protection IC U6 (with C33=100 nF 50 V X7R on VBIAS, C34=1 uF on +3V3 VPWR, and R9=100k pull-up on ~{FLT}) to protected system-side CC1/CC2 (J6 pads 94/96 and secondary 5.5 V unidirectional TPD1E05U06DPYR clamps D5/D6, isolating CM5 and D5/D6 from 20 V VBUS-to-CC shorts), and wires D+/D- to USB2_P/N with USBLC6-2SC6 (D1, pin 5 on VBUS_D1_CLAMP decoupled to GND by C25=100 nF and DC-biased from +5V via R20=100 kOhm while isolated from VBUS_IN) ESD protection and USB_OTG_ID left unconnected so CM5 internal pull-up selects USB Device/rpiboot mode", quantity: "1x USB-C, 5 V / 3-5 A"}
+  - {id: R4, text: "Two surface-mount horizontal USB 2.0 Type-A ports (Wurth 629104190121) on CM5 USB3-0 and USB3-1 USB 2.0 pairs with VBUS_EN current-limited power switches and ESD protection", how_met: "J2 and J3 (629104190121) on bottom edge wired to USB3-0-D_P/N and USB3-1-D_P/N, protected by USBLC6-2SC6 (D2, D3) and powered via AP2553W6-7 (U2, U3) with 43 kOhm ILIM resistors R1/R2 (0.56 A min / 0.615 A typ / 0.68 A max limit per port), 222 uF nominal / ~207.5 uF effective low-ESR output capacitance per port (two 100 uF 10 V 70 mOhm Kemet T520B107M010ATE070 KO-CAP polymer tantalum capacitors C26+C27 on USB0_VBUS and C28+C29 on USB1_VBUS plus 22 uF 10 V X5R 0603 MLCCs C2 and C3, >= 167.5 uF worst-case at -20% tolerance >= 120 uF per USB 2.0 Section 7.2.4.1 Table 7-7, charging in 1.69 ms typ / 1.85 ms at 0.56 A ILIM_min << 4-15 ms AP2553W6-7 t_Blank), 205.2 uF nominal / ~203.5 uF effective upstream +5V bulk reservoir (C30+C31 2x100 uF polymer tantalum + C9 2.2 uF + C10..C12 3x1 uF), 22 kOhm pull-down R10 on USB_VBUS_EN (U2.3), and 22 kOhm pull-down R11 to GND on U3.3 / CM5 GPIO26 (J6 pad 24, net USB1_VBUS_EN with zero capacitive loading) so USB-A port 1 defaults OFF in hardware during reset and boot (guaranteeing <= 2.935 A <= 3.0 A on 3.0 A non-PD sources) until software enables GPIO26", quantity: "2x USB-A 2.0"}
+  - {id: R5, text: "Full-size HDMI port (Amphenol 10029449-111RLF) from CM5 HDMI0 through TPD12S016PWR", how_met: "J4 (10029449-111RLF) on right edge driven by CM5 HDMI0 TMDS pairs through U1 (TPD12S016PWR, with CT_HPD=+3V3 for 55 mA HDMI0_5V supply and HPD buffer, C8=1 uF reservoir on 5V_OUT, 8-channel TMDS ESD protection, and LS_OE=GND with A-side pins tied to +3V3 and B-side CEC_B/SCL_B/SDA_B pins 7-9 left open so neither U1's 27 kOhm CEC_B pull-up nor its 1.75 kOhm DDC pull-ups load the bus, while CM5 internal fail-safe 1.8 kOhm 5 V DDC pull-ups and 27 kOhm 3.3 V CEC pull-up drive HDMI0_SCL/HDMI0_SDA/HDMI0_CEC directly, protected at J4 by local 5.5 V unidirectional ultra-low-capacitance (0.42 pF typ) TPD1E05U06DPYR ESD TVS diodes D9, D10, and D11 to GND)", quantity: "1x HDMI Type-A"}
+  - {id: R6, text: "AI Camera (SC1174, rea_hardware.parts.ai_camera with rot_deg=90) mounted on top via four Wurth 9774080243R M2x8.0 mm SMT spacers, two 0.5 mm M2 washers per spacer (underside at Z=10.6 mm), and Essentra 50M020040N003 M2x4 nylon screws (>=1.8 mm thread engagement), with enforced height zones (<=5.75 mm under socket strip, <=6.65 mm under camera body) and Amphenol SFW15R-1STE1LF 15-pin bottom-contact FFC socket under the camera wired to CM5 CAM0 via Wurth 686615050001 50 mm same-side FFC folded in a 180 deg U-turn", how_met: "SP1..SP4 (9774080243R, 8.0 mm) + m2_washers (2x0.5 mm = 1.0 mm) + camera_m2_screws (1.88 mm thread engagement) support ai_camera (rot_deg=90, centered at (20.431, -15.7)) with underside at Z=10.6 mm (9.0 mm above F.Cu); board.height_zones enforces 5.75 mm in camera_socket_strip and 6.65 mm in camera_body; J5 (SFW15R-1STE1LF, bottom contact, mouth +x, pin 1 at world +y) sits at (13.5, 15.7) wired to CM5 CAM0 (MIPI0 2-lane + CAM_GPIO0/1 + SCL0/SDA0) via 50 mm 686615050001 FFC with >=3.0 mm U-turn radius", quantity: "9.0 mm standoff (Z=10.6 mm underside), 5.75/6.65 mm height zones, 15-pin CAM0, 50 mm FFC"}
+  - {id: R7, text: "Surface-mount power button on PWR_BUT, pinhole BOOT button on nRPIBOOT, UART0 test pads (GPIO14/GPIO15/GND), no GPIO header, and no SD slot", how_met: "SW1 (PTS526SM15SMTR2LFS) on PWR_BUT moved to (38.5, 27.6) clear of the FFC U-turn band, SW2 (B3U-1000P) behind pinhole on nRPIBOOT, SMD test pads TP1/TP2/TP3 on GPIO14/GPIO15/GND", quantity: "2 buttons, 3 test pads"}
+  - {id: R8, text: "Two-part snap-fit FDM case (27.5 mm total depth, front shell to Z=+20.0 mm) with FOV-clearing front lens window, power button, BOOT pinhole, room for the 50 mm FFC U-turn, exact port cutouts, rear M2.5 heat-set inserts, and CM5 cooling vents", how_met: "front_shell and back_shell clip together via FDM snap fits, clearing the 66.3 x 52.3 deg +/- 3 deg camera FOV from Z=19.75 mm, capturing power_button and boot_pin, housing the 50 mm FFC U-turn without sharp edges, and securing CM5 + PCBA via m25_screws into m25_inserts", quantity: "2 shells + 2 button actuators, 27.5 mm depth"}
+decisions:
+  - question: "Power path and current budget from USB-C J1?"
+    choice: "J1 VBUS connects to upstream net VBUS_IN (protected by TI TVS2200DRVR 22 V 1.12 kW flat-clamp unidirectional WSON-6 surge TVS D4 with LCSC C523793, VRWM=22 V tolerating continuous 20 V +/- 5% USB-C PD overvoltage faults without breakdown, VBR=24.6-27.6 V at 1 mA, VCLAMP=27.2 V typ / 27.7 V max at 24 A 8/20 us and 27.6 V typ / 28.0 V max at 40 A 8/20 us <= +28 V U4/U5 abs max, and VF=-0.5 V typ clamping negative inductive transient ringing on reversible USB-C J1, and decoupled by C1=2.2 uF 50 V X7R 0805 Samsung CL21B225KBYNNWE + C4=100 nF 50 V X7R 0402 = 2.3 uF nominal / 2.53 uF max at +10% tolerance <= 10 uF USB Type-C cSink limit, both rated at 50 V >= 1.79x D4's 28.0 V maximum clamping voltage) and feeds two parallel TI TPS259470ARPWR active-current-limiting ideal-diode OVP eFuses (U4 primary, U5 secondary in TI Datasheet Figure 8-18 active-standby parallel configuration, combined R_ON(typ) = 14.15 mOhm at 25 C / 21.0 mOhm max at 85 C, with wide F.Cu copper polygons, a dedicated 1 oz In3.Cu VBUS_IN plane, 8 VBUS_IN vias, mirror-symmetric 9-via U4.6/U5.6 output arrays, a 1 oz In3.Cu +5V plane, and 5 parallel +5V vias with 0.50 mm B.Cu bus bars at J6 pads 77-87 -> ~2 mOhm total PCB copper+via resistance and ~48 mV typ / ~110 mV max carrier drop at 3.0 A) driving downstream +5V to CM5 +5V pins (J6 pads 77, 79, 81, 83, 85, 87), U2/U3 (AP2553W6-7), and U1 (TPD12S016PWR); CM5 internal PMIC generates +3V3 (feeding J5 camera and GPIO_VREF) and +1V8. U4 soft-starts via C22=4.7 nF (0.43 V/ms, ~11.7 ms ramp) while U4 AUXOFF (U4.3) holds U5 EN/UVLO (U5.1, net VBUS_U5_EN) low until U4's HFET gate reaches full overdrive, after which R15=100 kOhm (referenced to upstream VBUS_IN) and R16=43 kOhm (GND) bias U5 EN/UVLO to 1.50 V at 5.0 V (setting V_IN(UVLO_R)=3.99 V and V_IN(UVLO_F)=3.66 V without sensitivity to downstream +5V droop), and open-drain U5.3 (AUXOFF), U4.4 (~{FLT}), and U5.4 (~{FLT}) on net VBUS_AUXOFF feed CM5 PMIC_Enable (J6 pad 99, net PMIC_ENABLE, pulled up to +5V via CM5's internal 100 kOhm resistor) through R19=6.8 kOhm (RC0402FR-076K8L), C32=2.2 uF (25 V X7R 0603 GRM188Z71E225KE43D to GND, C_eff >= 1.85 uF typ / 1.68 uF min at 5 V bias and -10% tolerance, setting tau_fall = 14.0 ms nominal / 10.7 ms worst-case derated > 2.7x t_ITIMER=3.94 ms so a 3.94 ms low pulse keeps PMIC_ENABLE >= 3.58 V >> 2.0 V VIH_min, and V_LOW=0.37 V < 0.40 V), external pull-up R5=1.33 kOhm (RC0402FR-071K33L from +5V to VBUS_AUXOFF), and dual series Schottky diode D12 (Rectron BAT54S, LCSC C408389: Diode 1 Pin 1->3 from VBUS_AUXOFF to PMIC_ENABLE providing fast charge tau_rise = 2.88 ms nominal / 2.42 ms effective so PMIC_ENABLE slews 0.4 V->2.0 V in 1.12 ms and recharges 4.4x faster than tau_fall without ratcheting while reverse-biasing when VBUS_AUXOFF is low, and Diode 2 Pin 3->2 from PMIC_ENABLE to +5V immediately discharging C32 into +5V so J6.99 is never back-driven on rapid +5V collapse) per TI Figure 8-18 ('To downstream enable'). Shared divider R12=390 kOhm / R13=49.9 kOhm (RC0402FR-0749K9L, LCSC C137969) / R14=107 kOhm (RC0402FR-07107KL, LCSC C138070) sets UVLO_R=4.18 V and OVLO_R=6.13 V typ (5.83 V min > 5.50 V USB-PD vSafe5V max, 6.45 V max; OVLO_F=5.62 V typ / 5.33 V min, disconnecting >6.1 V and 20 V USB-C faults), R17=R18=1.33 kOhm (RC0402FR-071K33L, LCSC C276261, >=750 Ohm UL2367) set ILIM(typ)=2.504 A per eFuse (5.00 A combined <= J1 5.0 A VBUS contact rating, ILIM(min)=2.281 A / 4.56 A combined, ILIM(max)=2.731 A) so neither eFuse reaches ILIM(min) under worst-case 60%/40% passive R_ON+PCB sharing up to 2.281 A / 0.60 = 3.80 A (> 3.62 A worst-case system fault load / 3.26 A nominal full load) and active current-limit regulation equalizes sharing up to 5.0 A, and C23=C24=4.7 nF on U4.10 and U5.10 (ITIMER) set steady-state transient overcurrent blanking t_ITIMER=3.94 ms after start-up. U2/U3 current limits use R1=R2=43 kOhm (0.56 A min / 0.615 A typ / 0.68 A max per USB-A port), USB0_VBUS and USB1_VBUS each have 222 uF nominal / ~207.5 uF effective low-ESR capacitance (two 100 uF 10 V 70 mOhm Kemet T520B107M010ATE070 KO-CAP polymer tantalum capacitors C26+C27 on USB0_VBUS and C28+C29 on USB1_VBUS with zero DC-bias derating, plus 22 uF 10 V X5R 0603 MLCC C2/C3 providing ~7.5 uF effective HF bypass at 5 V; >= 167.5 uF worst-case at -20% tolerance >= 120 uF per USB 2.0 Section 7.2.4.1 Table 7-7, charging to 5 V in 1.69 ms typ / 1.85 ms at 0.56 A ILIM_min << 4-15 ms AP2553W6-7 t_Blank without asserting FAULT_N) backed by 205.2 uF nominal / ~203.5 uF effective upstream +5V bulk capacitance (C30=100 uF and C31=100 uF T520B107M010ATE070 polymer tantalum + C9=2.2 uF + C10..C12=3x1 uF), USB_VBUS_EN (U2.3) is strapped low at boot with R10=22 kOhm, and U3.3 (USB1_VBUS_EN) is controlled independently by CM5 GPIO26 (J6 pad 24) with 22 kOhm off-state pull-down R11 to GND and zero capacitive loading (C21=100 nF reassigned to +5V HF bypass) so USB-A port 1 defaults OFF in hardware during reset and boot (guaranteeing <= 2.935 A <= 3.0 A on 3.0 A non-PD sources) until software enables GPIO26, D1 (USBLC6-2SC6 on USB2_P/N) has pin 5 (VBUS_D1_CLAMP) locally decoupled to GND by C25=100 nF and DC-biased from +5V through R20=100 kOhm (keeping D1's upper steering diodes reverse-biased at 5 V for 2.5 pF typ capacitance without peak-rectifying 3.3 V Full-Speed edges while limiting unpowered clamp current to <33 uA and isolating from 20 V on VBUS_IN), U6 (TI TPD6S300ARUKR, LCSC C2876380, WQFN-20) provides 24 V-tolerant series OVP FETs (V_OVP=6.0 V typ / 6.2 V max, 290 mOhm R_ON, 70 ns response), IEC 61000-4-2 ESD protection, and dead-battery 5.1 kOhm Rd pull-downs (C_CC1/RPD_G1 pins 4/7 on C_CC1 from J1.A5, C_CC2/RPD_G2 pins 5/6 on C_CC2 from J1.B5, VBIAS pin 3 decoupled by C33=100 nF 50 V X7R 0402 to GND, VPWR pin 10 powered from +3V3 with C34=1 uF 25 V X5R 0402 bypass, and ~{FLT} pin 9 pulled up to +3V3 via R9=100 kOhm) between J1.A5/B5 and protected system-side CC1/CC2 (U6 pins 12/11 to J6.94/96 and secondary 5.5 V unidirectional TPD1E05U06DPYR ESD clamps D5/D6 to GND), D7 uses 5.5 V unidirectional TPD1E05U06DPYR on PWR_BUT (5 V CM5 pull-up domain), and D8 uses 3.3 V PESD3V3S1BLYL on nRPIBOOT. On U1 (TPD12S016PWR), LS_OE (pin 5) is tied to GND and CT_HPD (pin 12) to +3V3 so the 55 mA HDMI0_5V load switch and HPD buffer remain enabled while the internal DDC/CEC level shifters are disabled; CEC_A/SCL_A/SDA_A (pins 1-3) are tied to +3V3 (<=3.6 V), C8=1 uF (GRM155R61E105KE11J) provides the TI-recommended 1 uF output reservoir on U1.13 (5V_OUT), CEC_B/SCL_B/SDA_B (pins 7-9) are left open (no-connect) so neither U1's internal 27 kOhm CEC_B pull-up nor its 1.75 kOhm DDC pull-ups contend with the CM5, and CM5's 5 V-tolerant fail-safe HDMI0_SCL/HDMI0_SDA (internal 1.8 kOhm pull-ups to +5V) and HDMI0_CEC (internal 27 kOhm pull-up to +3V3) drive J4 pins 15, 16, and 13 directly with local ultra-low-capacitance (0.42 pF typ) 5.5 V unidirectional TPD1E05U06DPYR ESD TVS diodes D9, D10, and D11 to GND at J4."
+    reason: "Current budget: CM5 ~1.5-2.0 A + AI Camera ~0.20 A reflected to +5V (~0.25 A at +3V3) + HDMI 5V (0.055 A) + 2x USB-A 2.0 host ports (2 x 0.50 A nominal, 0.615 A typical / 0.68 A max limit per port via 43 kOhm R_ILIM on AP2553W6-7). Full simultaneous dual-USB-A load (3.26-3.62 A worst-case) operates within a 5 V / 5 A USB-PD contract negotiated natively by CM5 over CC1/CC2 (supported by U4 || U5 with R17=R18=1.33 kOhm giving ILIM(typ)=2.50 A per eFuse / 5.0 A combined <= J1 5.0 A VBUS contact rating and ILIM(min)=2.28 A supporting >=3.80 A > 3.62 A under worst-case 60%/40% passive R_ON+PCB sharing), while on a 5 V / 3.0 A non-PD source CM5 software can independently disable USB-A port 1 (J3/U3) by driving GPIO26 (J6 pad 24, USB1_VBUS_EN) low so hardware-limited peak current stays <=2.935 A <= 3.0 A. Isolating downstream +5V behind the soft-started parallel TPS259470ARPWR pair (with R15 referenced to VBUS_IN and open-drain U5.3 AUXOFF + U4.4/U5.4 ~{FLT} shaped by R5=1.33k + D12 BAT54S + R19=6.8k + C32=2.2 uF X7R to J6.99 PMIC_Enable per TI Figure 8-18) keeps unswitched cSink at J1 to 2.3 uF nominal (<= 10 uF USB Type-C limit), holds the CM5 PMIC in reset during soft-start and persistent >3.94 ms faults without false resets during <3.94 ms transient current limiting, limits carrier voltage drop at 3.0 A to ~48 mV typ / ~110 mV max (within the 0.25 V total budget to 4.75 V), blocks reverse current from +5V to VBUS_IN, and disconnects >6.1 V and 20 V USB-C overvoltage faults (with OVLO_R,min=5.83 V > 5.50 V USB-PD vSafe5V max) behind TI TVS2200DRVR 22 V flat-clamp unidirectional surge TVS D4."
+  - question: "Flashing and boot-mode path for CM5?"
+    choice: "USB2_P/USB2_N (J7 pads 5/3, CM5 pins 105/103) wired directly to USB-C J1 D+/D- with USB_OTG_ID (J7 pad 1, CM5 pin 101) left unconnected so CM5 internal pull-up selects USB Device / rpiboot mode; SW2 (Omron B3U-1000P) pulls nRPIBOOT (J6 pad 93, CM5 pin 93) directly to GND when held with a paperclip at power-up."
+    reason: "Per CM5 Datasheet Section 3.4, leaving USB_OTG_ID unconnected selects USB Device mode for rpiboot flashing and USB gadget networking (whereas grounding USB_OTG_ID forces Host mode). Hardware switch SW2 holds nRPIBOOT at 0 V before USB-C VBUS is applied, guaranteeing nRPIBOOT is low well within the 2 ms window after 5 V rises. User USB-A ports J2/J3 use RP1 host pairs USB3-0-D_P/N and USB3-1-D_P/N, leaving the OTG pair dedicated to J1."
+  - question: "How are the 6-layer stack-up, layer order, and controlled-impedance traces realized on Lion Circuits?"
+    choice: "Upgrade the board from 4 layers to 6 layers, 1.6 mm, on Lion Circuits' published 6-layer 1.6 mm Custom-tier stack-up with impedance control: L1 F.Cu (signal, 0.035 mm) / 0.12 mm 2116*1 prepreg / L2 In1.Cu (unbroken GND plane, 0.035 mm) / 0.36 mm NP-140 core / L3 In2.Cu (slow signals, 0.035 mm) / 0.48 mm 2116*4 prepreg / L4 In3.Cu (+5V and +3V3 power planes, 0.035 mm) / 0.36 mm NP-140 core / L5 In4.Cu (unbroken GND plane, 0.035 mm) / 0.12 mm 2116*1 prepreg / L6 B.Cu (signal, 0.035 mm), with er=4.1. Update net classes for the 0.12 mm outer prepregs: Diff100 (100 ohm HDMI0 TMDS and 2-lane MIPI0 CSI-2) uses 0.1524 mm (6.0 mil) width and 0.18 mm (7.1 mil) gap (99.9 ohm differential; existing 0.1524 mm routes with 0.25-0.55 mm gap give 105.4-112.1 ohm, within 100 ohm +/- 15%); Diff90 (90 ohm USB2 OTG and USB3_0/USB3_1 USB 2.0 pairs) uses 0.175 mm (6.9 mil) width and 0.1524 mm (6.0 mil) gap (89.8 ohm differential; or 0.20 mm width if preserving 0.45-0.53 mm gap segments -> 95.3-95.8 ohm, within 90 ohm +/- 15%). Route the slow nets (HDMI0_HOTPLUG, HDMI0_CEC, HDMI0_SCL, HDMI0_SDA, CC1, CC2, CAM_GPIO0, CAM_GPIO1, SCL0, SDA0, PWR_BUT, UART0_RXD and their pull-ups) on In2.Cu while keeping existing component placement where the camera changes allow and preserving valid high-speed routes."
+    reason: "Owner directive (3 Nov): on 4 layers only F.Cu and B.Cu carried signals while B.Cu was congested by J6/J7 and SP5..SP8, leaving 12 slow nets unrouted across three sessions. The 6-layer stack-up dedicates In1.Cu and In4.Cu as unbroken GND reference planes immediately adjacent to F.Cu and B.Cu so every high-speed differential pair runs next to an unbroken GND plane and never crosses a split on In3.Cu, while In2.Cu provides a clean inner routing plane for all slow control and I2C/CEC/CC signals."
+  - question: "What are the keepout, requirement R1, and Lion Circuits fab/BOM/CPL updates for the 6-layer revision?"
+    choice: "Expand the 8x15 mm CM5 antenna keepout (cm5_wifi_antenna, rect_mm [0.0, 14.0, 8.0, 29.0]) to all six copper layers [F.Cu, In1.Cu, In2.Cu, In3.Cu, In4.Cu, B.Cu], drop the old camera_socket_keepout 0 mm rule area, and update requirement R1, the fab package, and Lion BOM/CPL notes to 6 layers."
+    reason: "Matches the CM5 datasheet requirement for zero copper on any layer beneath the PCB antenna and aligns R1 and the Lion Circuits 6-layer Custom-tier fabrication/assembly package with the owner's 3 Nov specification."
+  - question: "How are the AI Camera orientation, mounting stack, height zones, and SW1 placement updated?"
+    choice: "Use rea_hardware.parts.ai_camera((20.431, -15.7), z_underside=10.6, rot_deg=90) so the camera is rotated 90 deg CCW (cable leaving through +x right edge at x=32.362 mm, board spanning x=8.5..32.362 mm clear of the x=0..8 mm antenna keepout, portrait image rotated in software). Mount the camera on four Wurth 9774080243R M2x8.0 mm SMT spacers (SP1..SP4 at (10.5, 5.2), (23.0, 5.2), (10.5, 26.2), (23.0, 26.2)) plus two 0.5 mm flat M2 washers per spacer (1.0 mm washer stack, Z=9.6..10.6 mm), placing the camera underside at Z=10.6 mm (9.0 mm above F.Cu) and camera ribbon centre at Z=9.225 mm (6.30 mm >= 6.0 mm above J5's slot centre at Z=2.925 mm). Fasten with four Essentra 50M020040N003 M2x4.0 mm nylon screws (4.0 mm shank - 1.12 mm camera PCB - 1.00 mm washers = 1.88 mm >= 1.8 mm thread engagement in SP1..SP4). Update board.height_zones from .socket_rect [26.652, 5.895, 32.362, 25.505] to max_height_mm=5.75 mm ((10.6 - 2.75) - 1.6 - 0.5) and .outline_rect [8.5, 3.2, 32.362, 28.2] to max_height_mm=6.65 mm ((10.6 - 1.85) - 1.6 - 0.5), allowing SP1..SP4 and J5. Move SW1 and its front_shell plunger F2 from (38.5, 24.0) to (38.5, 27.6) (front view [40.5, 29.6]) so both sit outside the y=7.7..23.7 mm 16 mm FFC U-turn band."
+    reason: "Owner directive (3 Nov) from AI Camera product brief p.4: rotating 90 deg and folding the ribbon under on 8 mm spacers + two washers provides >=6.0 mm vertical separation between the upper (Z=9.225 mm) and lower (Z=2.925 mm) ribbon levels for a >=3.0 mm radius U-turn while keeping >=1.8 mm screw thread engagement."
+  - question: "What are the J5 connector, CM5 camera port 0 pinout, I2C pull-up configuration, and 50 mm FFC route?"
+    choice: "Replace J5 with Amphenol SFW15R-1STE1LF (15-pin 1.0 mm right-angle bottom-contact ZIF FFC socket, LCSC C3168538, Lion stock) placed under the camera at board (13.5, 15.7) with rot_deg=90 (mouth facing +x towards the U-turn, long axis along y) and pads numbered 1..15 from the world +y end (board y=8.7 mm) to the world -y end (board y=22.7 mm) so J5 pin 1 aligns with camera J_CAM pin 1 at Y=-8.7 mm. Wire J5 to CM5 camera port 0 (CAM/DISP 0): 1=GND, 2=MIPI0_D0_N (J7 pad 15, CM5 pin 115), 3=MIPI0_D0_P (J7 pad 17, CM5 pin 117), 4=GND, 5=MIPI0_D1_N (J7 pad 21, CM5 pin 121), 6=MIPI0_D1_P (J7 pad 23, CM5 pin 123), 7=GND, 8=MIPI0_C_N (J7 pad 27, CM5 pin 127), 9=MIPI0_C_P (J7 pad 29, CM5 pin 129), 10=GND, 11=CAM_GPIO0 (J6 pad 97, CM5 pin 97, camera power enable with 100 kOhm pull-down R8), 12=CAM_GPIO1 (J6 pad 100, CM5 pin 100, no external pull-down so CM5 internal 15 kOhm pull-up to +3V3 and boot-time active-low nEXTRST drive are uncontested), 13=SCL0 (J6 pad 80, CM5 pin 80), 14=SDA0 (J6 pad 82, CM5 pin 82), 15=+3V3; mounting tabs 16/17=GND. Do not fit external pull-up resistors R3/R4 on SCL0/SDA0 or pull-down R9 on CAM_GPIO1 because the CM5 module (internal 1.8 kOhm pull-ups on SCL0/SDA0 and internal 15 kOhm pull-up on CAM_GPIO1 to +3V3, verified against CM5 datasheet and CM5 IO Board rev 2 schematic) and the AI Camera provide onboard termination. Connect J5 to J_CAM with Wurth 686615050001 (15-way, 1.0 mm, 50 mm +/- 3 mm, same-side contacts, 16 mm wide, 10 mm stiffeners, 0.3 mm thick, Lion stock) with stiff_end_mm=6.0, contacts=same, and J5 contacts_face=[0,0,-1], routed straight out of each socket past the stiffeners and around a >=3.37 mm radius 180 deg U-turn keeping outer x=43.73 mm <= 44 mm clear of D1/D4-D6/C1/C4, J1, and J4."
+    reason: "Fixes the previous port 1 / port 0 bus mismatch so stock Raspberry Pi OS with dtoverlay=imx500,cam0 discovers the IMX500 on I2C0 and receives 2-lane CSI-2 video on MIPI0, while the 180 deg U-turn flips the same-side ribbon's contact face from up (+Z at J_CAM) to down (-Z at bottom-contact J5) with pin 1 on the world +y edge at both ends."
+  - question: "How are the case depth, FOV window, assembly sequence, and continuity checks updated?"
+    choice: "Grow the front_shell by 5.5 mm to Z=+20.0 mm (total envelope depth 27.5 mm from Z=-7.5 mm to Z=+20.0 mm) to enclose the camera lens front at Z=+19.75 mm, center F1 at front-view [25.0, 17.7] (board (23.0, 15.7)) sized to clear the full 66.3 x 52.3 deg +/- 3 deg FOV cone (horizontal along y), and leave smooth internal room for the U-turn up to x=44 mm. Document in assembly notes and rea/observation.md: (1) plug the 50 mm FFC into the camera first, close J5's latch with the camera lifted, then fold the U-turn and screw the camera down; (2) before first power, verify with a multimeter that J5 pin 15 (+3V3) has continuity to camera pin 15 and J5 pin 1 (GND) has continuity to camera pin 1; (3) verify the camera sits flat on all four spacers without rocking; (4) configure software with dtparam=ant1 and dtoverlay=imx500,cam0."
+    reason: "Captures all owner-mandated mechanical envelope, optical FOV, assembly order, and pre-power electrical verification requirements."

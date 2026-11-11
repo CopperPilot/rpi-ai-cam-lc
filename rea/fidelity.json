@@ -1,0 +1,111 @@
+{
+  "overall_score": 9,
+  "form_score": 9,
+  "feature_score": 9,
+  "requirements_score": 9,
+  "threshold": 7,
+  "requirements": [
+    {
+      "id": "R1",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "Carrier PCB matches the 55.0 x 40.0 mm CM5 outline with 3.0 mm corner radii, four M2.5 corner mounting holes 3.5 mm from edges, Lion Circuits SU-06L-0165-GDM140-001 6-layer 1.6 mm controlled-impedance stack-up (1 oz outer / 0.5 oz inner copper, Diff100 0.180/0.1524 mm, Diff90 0.230/0.1524 mm), 2-up assembly panelization, and verified in-stock Lion Circuits BOM/CPL."
+    },
+    {
+      "id": "R2",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "Compute Module 5 (excluded from the Lion PCBA BOM for final assembly) mounts underneath via two separate Amphenol 10164227-1001A1RLF 1.5 mm mezzanine connectors (J6, J7) and four 1.5 mm Wurth 9774015960R spacers (SP5-SP8), with no bottom parts exceeding 1.5 mm, no through-hole protrusions, and an 8 x 15 mm copper/part keepout across all six layers at the left board edge."
+    },
+    {
+      "id": "R3",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "GCT USB4105-GF-A (J1) provides 5 V input and USB 2.0 OTG flashing with <=10 uF unswitched cSink, TVS2200DRVR surge protection, parallel TPS259470ARPWR soft-started ideal-diode OVP eFuses (~48 mV typ / ~110 mV max carrier drop at 3 A within the 0.25 V budget), TPD6S300ARUKR 24 V CC1/CC2 OVP/ESD protection to CM5 CC1/CC2, and ESD protection on VBUS, CC, and D+/D-."
+    },
+    {
+      "id": "R4",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "Two horizontal surface-mount Wurth 629104190121 USB 2.0 Type-A receptacles (J2, J3) on the bottom edge are wired to CM5 USB3-0 and USB3-1 USB 2.0 pairs with AP2553W6-7 current-limited switches (U2, U3), low-ESR polymer tantalum + MLCC output bypass, and USBLC6-2SC6 ESD protection."
+    },
+    {
+      "id": "R5",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "Full-size surface-mount Amphenol 10029449-111RLF HDMI receptacle (J4) on the right edge is driven from CM5 HDMI0 through the TPD12S016PWR companion IC (U1) with discrete low-capacitance ESD protection on DDC/CEC."
+    },
+    {
+      "id": "R6",
+      "verdict": "met",
+      "owner": "mechanical",
+      "note": "AI Camera (SC1174) is rotated 90 degrees on four Wurth 9774080243R M2x8 mm SMT spacers plus two 0.5 mm M2 washers per spacer and M2x4 nylon screws, connected via a 50 mm Wurth 686615050001 same-side FFC making a smooth >=3.0 mm radius 180-degree U-turn into the bottom-contact Amphenol SFW15R-1STE1LF socket (J5) under the camera."
+    },
+    {
+      "id": "R7",
+      "verdict": "met",
+      "owner": "electrical",
+      "note": "Surface-mount power tactile switch SW1 (PTS526SM15SMTR2LFS) on PWR_BUT sits at (38.5, 27.6) clear of the FFC U-turn band, subminiature tactile switch SW2 (B3U-1000P) sits on nRPIBOOT beneath the front pinhole at (4.5, 10.5), UART0 SMD test pads TP1-TP3 are provided, and both the GPIO header and SD card slot are omitted as requested."
+    },
+    {
+      "id": "R8",
+      "verdict": "met",
+      "owner": "mechanical",
+      "note": "Two-part snap-fit FDM enclosure (59.0 x 44.0 x 27.5 mm) provides an unobstructed FOV lens window, captive power button and BOOT pinhole plungers, smooth internal clearance for the FFC U-turn, aligned port openings, rear M2.5 heat-set inserts, and seven CM5 cooling vent slots."
+    }
+  ],
+  "features": [
+    {
+      "id": "F1",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "8.0 mm circular window on the front face is centered over the AI Camera lens barrel at Z=19.75 mm and clears the full 66.3 x 52.3 deg field of view."
+    },
+    {
+      "id": "F2",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Captive orange power button cap on the front face aligns directly over tactile switch SW1 at board (38.5, 27.6) with its stem reaching the switch actuator."
+    },
+    {
+      "id": "F3",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Recessed 2.0 mm boot pinhole and captive plunger on the front face align directly over tactile switch SW2 at board (4.5, 10.5)."
+    },
+    {
+      "id": "F4",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Right-edge USB-C cutout aligns cleanly with the GCT USB4105-GF-A receptacle mouth and center tongue facing outward."
+    },
+    {
+      "id": "F5",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Right-edge HDMI cutout aligns cleanly with the Amphenol 10029449-111RLF full-size HDMI receptacle mouth and contact tongue facing outward."
+    },
+    {
+      "id": "F6",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Bottom-edge left USB-A cutout aligns cleanly with the Wurth 629104190121 receptacle J2 mouth facing outward."
+    },
+    {
+      "id": "F7",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Bottom-edge right USB-A cutout aligns cleanly with the Wurth 629104190121 receptacle J3 mouth facing outward."
+    },
+    {
+      "id": "F8",
+      "verdict": "ok",
+      "owner": "mechanical",
+      "note": "Seven parallel vertical rounded cooling vent slots are cut into the rear face of back_shell directly over the CM5 module."
+    }
+  ],
+  "top_differences": [
+    "In render-inside.png the enclosure shells remain opaque rather than hidden, though internal board placement, actuator reach, port alignment, and stack assembly are clearly visible across render-exploded.png, render-actuators.png, and render-ports.png.",
+    "Compared to the earlier bare-board reference photos (which had an exposed PCB, 40-pin GPIO header, microSD slot, and vertical connectors), the design implements all owner-requested changes including a full two-part snap-fit FDM enclosure, horizontal edge ports, rotated AI Camera on 8 mm spacers with fold-under FFC, and removal of the GPIO header and SD slot."
+  ]
+}

@@ -1,0 +1,236 @@
+(footprint "KEY-SMD_B3U-1000PM"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "SW2"
+		(at 0 -2.75 270)
+		(layer "F.SilkS")
+		(uuid "bc76ab58-9a2e-4c70-8a52-35653bc6ae2c")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.16)
+			)
+		)
+	)
+	(property "Value" "B3U-1000P"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3a2387b5-dd12-44ab-ae5a-9a4a006e55b1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "efbf1ddf-d935-49ab-be44-0e99ef03c40c")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" "Subminiature SMT tactile switch"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "10bb5c1d-9222-4825-8b5a-24934bfb2a06")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "LCSC Part" "C231329"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "31ee6ef3-d62c-4004-90df-4ffc38c14a3c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "MPN" "B3U-1000P"
+		(at 0 0 270)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "281ce829-b1a3-414b-b7bd-3cf0141b73d0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer" "Omron"
+		(at 0 0 270)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "eb4f585d-8402-495b-9336-bef85809e26e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC" "C231329"
+		(at 0 0 270)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "32b046f7-4b67-4035-a7a5-6b1e14b99df1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.85 -1.25)
+		(end 0.85 -1.25)
+		(stroke
+			(width 0.16)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e3ab83d1-cf4f-45a6-bacb-63deaefe3163")
+	)
+	(fp_line
+		(start -0.85 1.25)
+		(end 0.85 1.25)
+		(stroke
+			(width 0.16)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6687aaa7-78d7-4034-801c-ca56d0705271")
+	)
+	(fp_line
+		(start -1.5 -1.25)
+		(end 1.5 -1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6a980314-80e7-47d6-b660-27e3b06d3faf")
+	)
+	(fp_line
+		(start -1.5 1.25)
+		(end -1.5 -1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3bca321a-f507-47ad-829c-0b5594d3cf86")
+	)
+	(fp_line
+		(start 1.5 -1.25)
+		(end 1.5 1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "c7d3331b-28ca-45ca-b870-33d70f108287")
+	)
+	(fp_line
+		(start 1.5 1.25)
+		(end -1.5 1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b09f76b0-2169-445e-8678-937f13780ddc")
+	)
+	(fp_line
+		(start -1.5 -1.25)
+		(end 1.5 -1.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "303a6e27-db68-40b9-bbb7-1c1f939cd6f4")
+	)
+	(fp_line
+		(start -1.5 1.25)
+		(end -1.5 -1.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "5eb1de69-d027-4a7c-8d78-24502a9ca9f1")
+	)
+	(fp_line
+		(start 1.5 -1.25)
+		(end 1.5 1.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "221aa262-c626-4440-828f-cf93cc32b9a3")
+	)
+	(fp_line
+		(start 1.5 1.25)
+		(end -1.5 1.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a878a5c8-b050-427b-9a31-2f6a781fe941")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "d540161c-f2b9-4c8f-85ea-6c0b9541c92d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.7 0)
+		(size 0.8 1.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "fb22ccd3-cb42-4859-89e6-0b927e3eacaf")
+	)
+	(pad "2" smd rect
+		(at 1.7 0)
+		(size 0.8 1.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "786330b5-0088-4cae-8460-7ca66d73465c")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lcsc.3dshapes/KEY-SMD_2P-L3.0-W2.5-H1.6-LS4.0.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

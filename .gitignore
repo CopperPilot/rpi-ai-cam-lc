@@ -1,0 +1,12 @@
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*-backups/
+*.kicad_prl
+fp-info-cache
+~*.lck
+_autosave-*
+rea/runs/**/*.jsonl
+rea/runs/**/*.log

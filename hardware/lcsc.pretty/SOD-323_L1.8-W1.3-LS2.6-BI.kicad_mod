@@ -1,0 +1,233 @@
+(footprint "SOD-323_L1.8-W1.3-LS2.6-BI"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -4 0)
+		(layer "F.SilkS")
+		(uuid "f2ed2e67-0f95-407d-91c7-bd81091055ff")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOD-323_L1.8-W1.3-LS2.6-BI"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "e5be541c-72ed-4f37-87e6-7680b2128e3f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a215770a-3e38-4c11-9b20-9db552178a90")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dacf6c15-2917-48f0-88d8-24c995742801")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "LCSC Part" "C207246"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f1b65d5e-29b2-425d-ad89-3a5c3e7d036b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.96 -0.73)
+		(end 0.96 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "19d64cf1-4354-4d30-89f8-9696af70ec24")
+	)
+	(fp_line
+		(start -0.96 -0.36)
+		(end -0.96 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2cbbd72e-c717-4f8e-b23a-a21d08dac796")
+	)
+	(fp_line
+		(start -0.96 0.36)
+		(end -0.96 0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d7d95c37-5ae9-4c8a-bbb2-4bf7651a063a")
+	)
+	(fp_line
+		(start -0.96 0.73)
+		(end 0.96 0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "74a57a6f-6e6c-4b16-8997-c4302190d5cd")
+	)
+	(fp_line
+		(start 0.96 -0.36)
+		(end 0.96 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1921853b-e0da-4104-a7ab-42b0cac407f7")
+	)
+	(fp_line
+		(start 0.96 0.36)
+		(end 0.96 0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ef4e9575-8301-4185-a002-6e17bec0095d")
+	)
+	(fp_circle
+		(center -1.28 0.65)
+		(end -1.25 0.65)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "c4d4ba34-9c77-4c2b-b43f-9f503509e9e2")
+	)
+	(fp_poly
+		(pts
+			(xy -0.399999 -0.399999) (xy -0.399999 0.399999) (xy 0 0) (xy -0.399999 -0.399999)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "57e6c1c3-91fc-484e-b6de-4da305f6ceba")
+	)
+	(fp_poly
+		(pts
+			(xy 0.399999 0.399999) (xy 0.399999 -0.399999) (xy 0 0) (xy 0.399999 0.399999)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "70f86be8-d9b1-4ab2-9cbb-9f9dbc9b58fc")
+	)
+	(fp_line
+		(start -0.88 -0.65)
+		(end 0.88 -0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "fc5f28d9-0354-4f2f-928a-de937e5d18a0")
+	)
+	(fp_line
+		(start -0.88 0.65)
+		(end -0.88 -0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b0b11635-1dc4-457a-aadd-e2674a31b88e")
+	)
+	(fp_line
+		(start 0.88 -0.65)
+		(end 0.88 0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "281e5169-a90b-44db-900a-76cb21cf2c91")
+	)
+	(fp_line
+		(start 0.88 0.65)
+		(end -0.88 0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9bd75843-eaec-4a44-be6b-2522be12b79f")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "8da569c8-1c87-4a6c-8afe-d92475cdd9b4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.11 0)
+		(size 0.845 0.42)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d5f47867-8621-4846-81b5-627e4f6feaf6")
+	)
+	(pad "2" smd rect
+		(at 1.11 0)
+		(size 0.845 0.42)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "08192840-1607-44f2-8719-ec5ed718756c")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lcsc.3dshapes/SOD-323_L1.8-W1.3-LS2.6-BI.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

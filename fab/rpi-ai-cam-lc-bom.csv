@@ -1,0 +1,34 @@
+Designator,Quantity,Value,Footprint,MPN,Manufacturer,Description
+C1,1,2.2uF,C0805,CL21B225KBYNNWE,Samsung Electro-Mechanics,"2.2uF 50V X7R 0805 MLCC on VBUS_IN (50V >= 1.79x D4 28.0V max clamp, unswitched cSink 2.3uF <= 10uF)"
+"C8,C10,C11,C12,C34",5,1uF,C0402,GRM155R61E105KE11J,Murata,1uF 25V X5R 0402 MLCC (U3 +5V input bypass)
+"C2,C3,C19",3,22uF,C0603,CL10A226MO7JZNC,Samsung Electro-Mechanics,"22uF 16V/10V X5R 0603 MLCC (Samsung CL10A226MO7JZNC / CL10A226MP8NUNE, J5 +3V3 camera bulk decoupling)"
+"C4,C5,C6,C7,C20,C21,C25,C33",8,100nF,C0402,GRM155R71H104KE14D,Murata,100nF 50V X7R 0402 MLCC
+"C22,C23,C24",3,4.7nF,C0402,GRM155R71H472KA01D,Murata,"4.7nF 50V X7R 0402 dV/dt soft-start capacitor on U4 (SR=0.43V/ms, tR=11.7ms)"
+"C26,C27,C28,C29,C30,C31",6,100uF,CAP-SMD_L3.5-W2.8,T520B107M010ATE070,Kemet,100uF 10V 70mOhm KO-CAP polymer tantalum bulk capacitor on J2 USB0_VBUS (1 of 2; 207.5uF effective with C27+C2 >= 120uF USB 2.0 C_PB)
+"C9,C32",2,2.2uF,C0603,GRM188Z71E225KE43D,Murata,"2.2uF 25V X7R 0603 RC blanking filter capacitor on PMIC_ENABLE (C_eff>=1.68uF at 5V, tau_fall>=10.7ms > 3.94ms t_ITIMER, tau_rise=2.42ms via R5+D12)"
+"D1,D2,D3",3,USBLC6-2SC6,SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL,USBLC6-2SC6,STMicroelectronics,USB 2.0 ESD protection array
+"D5,D6,D7,D9,D10,D11",6,TPD1E05U06DPYR,X1SON-2_L1.0-W0.6-P0.65-RD-1,TPD1E05U06DPYR,Texas Instruments,5.5V unidirectional ESD TVS on protected system-side CC2 (downstream of U6 TPD6S300ARUKR 24V OVP FET) to GND
+D12,1,BAT54S,SOT-23_L2.9-W1.3-P1.90-LS2.4-BR,BAT54S,Rectron,"Dual series 30V 200mA Schottky diode (1->3 fast charge VBUS_AUXOFF->PMIC_ENABLE, 3->2 fast rail-collapse discharge PMIC_ENABLE->+5V)"
+D4,1,TVS2200DRVR,WSON-6_L2.0-W2.0-P0.65-TL-EP,TVS2200DRVR,Texas Instruments,"22V flat-clamp unidirectional surge TVS on J1 VBUS_IN (VRWM=22V, VBR=24.6-27.6V, VC=27.2V typ/27.7V max at 24A & 27.6V typ/28.0V max at 40A 8/20us <= 28V abs max, VF=-0.5V typ)"
+D8,1,PESD3V3S1BLYL,DFN1006-2L-BI,PESD3V3S1BLYL,Nexperia,3.3V bidirectional ESD TVS on SW2 nRPIBOOT
+J1,1,USB4105-GF-A,TYPE-C-SMD_SBC-160S1A-20-S412,USB4105-GF-A,GCT,GCT 16-pin USB 2.0 Type-C horizontal SMT receptacle
+"J2,J3",2,629104190121,USB-A-SMD_629104190121,629104190121,Wurth Elektronik,Wurth WR-COM USB 2.0 Type-A horizontal SMT receptacle
+J4,1,10029449-111RLF,HDMI-SMD_10029449-001RLF,10029449-111RLF,Amphenol ICC,Amphenol full-size HDMI Type-A right-angle SMT receptacle
+J5,1,SFW15R-1STE1LF,CONN-SMD_15P-P0.50_SFW15R-1STE1LF,SFW15R-1STE1LF,Amphenol Communications Solutions,Amphenol 15-pin 1.0 mm right-angle bottom-contact ZIF FFC socket
+"J6,J7",2,10164227-1001A1RLF,CONN-SMD_100P-P0.40_10164227-1001A1RLF,10164227-1001A1RLF,Amphenol Communications Solutions,"Amphenol 100-pin 0.4 mm pitch mezzanine receptacle, 1.5 mm stack height (GPIO/Power pins 1-100 at B.Cu 25.0, 37.0, rot=180)"
+"R1,R2,R16",3,43k,R0402,RC0402FR-0743KL,Yageo,"43k 1% 0402 bottom divider to GND on U5 EN/UVLO (with R15=100k sets UVLO_R=3.99V, UVLO_F=3.66V)"
+"R6,R7,R10,R11",4,22k,R0402,RC0402FR-0722KL,Yageo,22k 1% 0402 pull-down on USB_VBUS_EN (fast 4.4ms reset discharge with R11)
+R12,1,390k,R0402,RC0402FR-07390KL,Yageo,390k 1% 0402 top UVLO/OVLO divider resistor (>=350k per TI TPS25947 datasheet)
+R13,1,49.9k,R0402,RC0402FR-0749K9L,Yageo,"49.9k 1% 0402 middle UVLO/OVLO divider resistor (UVLO_R=4.18V, OVLO_R=6.13V typ / 5.83V min > 5.50V vSafe5V)"
+R14,1,107k,R0402,RC0402FR-07107KL,Yageo,"107k 1% 0402 bottom UVLO/OVLO divider resistor to GND (OVLO_R=6.13V typ / 5.83V min, OVLO_F=5.62V typ)"
+"R8,R9,R15,R20",4,100k,R0402,RC0402FR-07100KL,Yageo,100k 1% 0402 pull-up to VBUS_IN on U4 AUXOFF -> U5 EN/UVLO (per TI Figure 8-18)
+"R5,R17,R18",3,1.33k,R0402,RC0402FR-071K33L,Yageo,"1.33k 1% 0402 current limit resistor for U4 (ILIM(typ)=2.50A, 5.0A combined <= J1 5.0A rating, ILIM(min)=2.28A)"
+R19,1,6.8k,R0402,RC0402FR-076K8L,Yageo,"6.8k 1% 0402 series RC filter resistor on VBUS_AUXOFF -> PMIC_ENABLE (tau_fall>=10.7ms > 3.94ms t_ITIMER with C32=2.2uF, V_LOW=0.37V < 0.40V)"
+"SP1,SP2,SP3,SP4",4,9774080243R,SMD-1_BD4.4-D2.8,9774080243R,Wurth Elektronik,Wurth WA-SMSI M2 internal thread 8.0 mm SMT steel spacer
+"SP5,SP6,SP7,SP8",4,9774015960R,SMD_BD6.0-D4.2,9774015960R,Wurth Elektronik,3.3mm ID 1.5mm SMT spacer
+SW1,1,PTS526SM15SMTR2LFS,SW-SMD_4P-L5.2-W5.2-P3.70-LS6.4,PTS526SM15SMTR2LFS,C&K,SMT tactile switch
+SW2,1,B3U-1000P,KEY-SMD_B3U-1000PM,B3U-1000P,Omron,Subminiature SMT tactile switch
+U1,1,TPD12S016PWR,TSSOP-24_L7.8-W4.4-P0.65-LS6.4-BL,TPD12S016PWR,Texas Instruments,TI HDMI companion IC
+"U2,U3",2,AP2553W6-7,SOT-26_L3.0-W1.6-P0.95-LS2.8-BL,AP2553W6-7,Diodes Incorporated,USB high-side power switch
+"U4,U5",2,TPS259470ARPWR,VQFN-10_L2.0-W2.0-P0.45-TL,TPS259470ARPWR,Texas Instruments,"TI 28mOhm 5.5A ideal-diode OVP eFuse (primary inrush channel, parallel R_ON=14.1mOhm)"
+U6,1,TPD6S300ARUKR,WQFN-20_L3.0-W3.0-P0.40-TL-EP1.7,TPD6S300ARUKR,Texas Instruments,TI 24V-tolerant USB Type-C CC1/CC2 series OVP FETs + IEC 61000-4-2 ESD protection + dead-battery Rd

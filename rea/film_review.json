@@ -1,0 +1,32 @@
+{
+  "round": 1,
+  "verdict": "pass",
+  "findings": [
+    {
+      "severity": "P1",
+      "time_s": 32.0,
+      "shot": "wire",
+      "issue": "During the wire shot (32.0s-35.0s), the camera views the opaque rear of the Compute Module 5 while the 15-pin FFC cable routes between the front camera module and the carrier board, leaving the cable occluded so the shot appears static.",
+      "cause": "renderer",
+      "fix": "Fade or lift the Compute Module 5 and carrier board during the wire shot, or angle the wire camera into the gap between the carrier board and AI camera so the FFC routing is visible."
+    },
+    {
+      "severity": "P2",
+      "time_s": 14.0,
+      "shot": "glide",
+      "issue": "As the orbit crosses the front axis at 14.0s-15.0s, the opaque front shell briefly blocks the view of the hovering internal boards.",
+      "cause": "renderer",
+      "fix": "Keep the glide orbit arc slightly wider in azimuth or higher in elevation when crossing the front shell."
+    },
+    {
+      "severity": "P2",
+      "time_s": 21.0,
+      "shot": "boards",
+      "issue": "At 21.0s-22.0s, the lower edges of the dual USB-A connectors touch the bottom border of the frame before the camera pulls back slightly.",
+      "cause": "renderer",
+      "fix": "Add a small framing margin around tall edge connectors during the initial boards population zoom."
+    }
+  ],
+  "direction_changed": false,
+  "summary": "The film clearly presents the Compact CM5 AI Camera upright with its lens and controls facing the viewer, explodes and reassembles every layer in clean mechanical order without collisions, and only hides the internal FFC ribbon during the rear-angled wire shot."
+}

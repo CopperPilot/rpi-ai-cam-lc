@@ -1,0 +1,11 @@
+part,files,process,material,finish,qty,bbox_mm,volume_cm3,mass_g,service
+back_shell,back_shell.stl,fdm,PLA,as-printed,1,59.0x44.0x7.5,6.38,7.9,JLC3DP FDM (PLA/PETG/ABS)
+front_shell,front_shell.stl,fdm,PLA,as-printed,1,59.0x44.0x20.4,11.56,14.3,JLC3DP FDM (PLA/PETG/ABS)
+power_button,power_button.stl,fdm,PLA,as-printed,1,6.2x6.2x16.6,0.15,0.2,JLC3DP FDM (PLA/PETG/ABS)
+boot_pin,boot_pin.stl,fdm,PLA,as-printed,1,4.0x4.0x16.0,0.08,0.1,JLC3DP FDM (PLA/PETG/ABS)
+cm5,,purchased,"Compute Module 5 with eMMC (any eMMC variant such as CM5104016 or CM5104032; bought outside Lion Circuits, excluded from the Lion PCBA BOM, and pressed into J6/J7 at final assembly)",,1,55.0x40.0x4.6,,,https://www.raspberrypi.com/products/compute-module-5/
+ai_camera,,purchased,SC1174,,1,23.9x25.0x11.9,,,https://www.lioncircuits.com/parts
+m2_washers,,purchased,"Eight flat M2 x 0.5 mm nylon washers (two per spacer, 1.0 mm stack height, OD 4.0 mm, ID 2.2 mm) placed atop SP1..SP4",,1,16.5x25.0x1.0,,,https://www.mcmaster.com/90295A080/
+camera_m2_screws,,purchased,50M020040N003,,1,16.5x25.0x5.2,,,https://www.lioncircuits.com/parts
+m25_inserts,,purchased,Four M2.5 x 3.5 mm brass heat-set threaded inserts (OD 3.5 mm) pressed into back_shell corner bosses,,1,51.5x36.5x3.5,,,https://www.mcmaster.com/94180A321/
+m25_screws,,purchased,Four M2.5 x 8 mm pan-head machine screws passing from carrier top through SP5..SP8 and the module into m25_inserts,,1,52.5x37.5x9.8,,,https://www.mcmaster.com/92000A065/
