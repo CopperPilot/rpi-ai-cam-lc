@@ -1,0 +1,36 @@
+{
+  "project": "rpi-ai-cam-lc",
+  "scope": "scoped_design_task",
+  "active_phase": "schematic_review_and_cleanup",
+  "gates": {
+    "skill_gates_loaded": [
+      "schematic-engineer",
+      "schematic-reviewer",
+      "schematic-conventions",
+      "thermal-simulation",
+      "emi-analysis"
+    ],
+    "erc": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0
+    },
+    "drc": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "unconnected_items": 0,
+      "schematic_parity_errors": 0
+    },
+    "schematic_layout_audit": {
+      "status": "pass",
+      "baseline_violations": 18,
+      "promoted_violations": 0,
+      "module_containers": 8
+    },
+    "identity_gate": {
+      "status": "pass",
+      "forbidden_tokens_found": 0
+    }
+  }
+}

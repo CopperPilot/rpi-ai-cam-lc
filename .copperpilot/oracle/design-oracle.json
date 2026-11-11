@@ -1,0 +1,15 @@
+{
+  "project": "rpi-ai-cam-lc",
+  "scope": "scoped_design_task",
+  "active_phase": "schematic_review_and_cleanup",
+  "decisions": [
+    {
+      "id": "sch-paper-a2-and-8-module-containers",
+      "state": "exact_reference",
+      "source": "hardware/rpi-ai-cam-lc.kicad_sch + rea/spec.yaml",
+      "description": "Upgraded schematic sheet size from A3 to A2 and partitioned all 84 existing components into 8 dashed module containers with bold section titles while preserving 100% of electrical netlist connectivity and PCB parity.",
+      "identity_disposition": "allowed",
+      "three_d_state": "inherited_resolved"
+    }
+  ]
+}
