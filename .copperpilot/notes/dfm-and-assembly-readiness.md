@@ -1,0 +1,43 @@
+# Compact CM5 AI Camera (`rpi-ai-cam-lc`) — JLCPCB & Lion Circuits DFM and Fabrication/Assembly Readiness Report
+
+## 1. Executive Summary
+
+- **Live JLCPCB DFM Verification (`https://jlcdfm.com/viewer?pcbUploadFileId=644061065261510657`):** **PASS** across all actionable copper, solder mask, drill, and silkscreen checks (`0` `Pad spacing` dangers/warnings, `0` `Soldermask bridge` dangers/warnings, `0` `Solder mask opening exposing trace` dangers/warnings, `0` `Sharp trace corner` dangers/warnings, `0` `Silkscreen to hole` dangers, and `0` `Silkscreen to pad` dangers). Summary saved at `./.copperpilot/fab/jlcpcb/dfm/20261113-134018-summary.json` and overview screenshot at `./.copperpilot/fab/jlcpcb/shots/20261113-134018-dfm-overview.png`.
+- **Main Carrier PCB (`hardware/rpi-ai-cam-lc.kicad_pcb`) DRC & Schematic Parity:** **PASS** (`0` DRC errors, `0` DRC warnings, `0` unconnected items, `0` schematic parity mismatches).
+- **Schematic ERC (`hardware/rpi-ai-cam-lc.kicad_sch`):** **PASS** (`0` ERC errors, `0` ERC warnings across `84` symbols and `174` nets).
+- **2-Up Assembly Panel PCB (`fab/panel/rpi-ai-cam-lc-panel.kicad_pcb`) DRC:** **PASS** (`0` DRC errors, `0` DRC warnings, `0` unconnected items).
+- **Live Lion Circuits BOM Availability (`https://www.lioncircuits.com/parts/bom-tool/6af6dd47e3e6758a9b7c5a6b`):** **PASS (`33 / 33` BOM lines in stock, `noOfNotAvailable = 0`)** after updating `J1`'s `MPN` from `USB4105-GF-A` to Lion Circuits' catalog-indexed `USB4105GFA` (`389,128` in stock at `₹101.96`). Full 33-line pricing and stock report saved at `./.copperpilot/notes/lioncircuits-bom-availability-report.md` and `./.copperpilot/fab/lioncircuits/bom-verification-summary.json`.
+- **Stale Artifact Cleanup:** Completed. Removed all stale root `.rpt` files, stray `*-drl_map.gbr` files, staging bundles, intermediate Gerber archives, and superseded JLCDFM job/screenshot files, keeping only the latest verified design and fabrication deliverables.
+
+---
+
+## 2. Live JLCPCB Online DFM (`jlcdfm.com`) Verification Summary
+
+| JLCDFM Analysis Check | Initial JLCDFM Result (`20261113-120408`) | Final JLCDFM Result (`20261113-134018`) | Resolution / Engineering Disposition |
+|---|---|---|---|
+| **Pad spacing** | `6` Danger (`0.09 mm`), `3` Warning (`0.13 mm`) | **`0` Danger, `0` Warning** (`100` Good) | Shifted `R12` (`0402`) by `0.20 mm` north from `(41.3, 10.1)` to `(41.3, 9.9)` and rerouted its `F.Cu` stubs, increasing pad-to-pad clearance to `U4` (`VQFN-10`) from `0.09 mm` to `0.30 mm`. |
+| **Soldermask bridge** | `1` Danger (`0.04 mm`) | **`0` Danger, `0` Warning** (`99` Good) | Applied `(solder_mask_margin -0.05)` on the central thermal pad (`Pad 11`, `0.90 x 1.60 mm`) of `U4` and `U5` (`TPS259470ARPWR` `VQFN-10`), increasing the solder mask web to pins 1–10 to `0.15 mm`. |
+| **Solder mask opening exposing trace** | `1` Danger (`0.04 mm`) | **`0` Danger, `0` Warning** (`100` Good) | Rerouted `U6` (`TPD6S300ARUKR`) Pad 9 `/CC1` stub on `F.Cu` orthogonally via `(43.485, 17.45)` at `0.20 mm` width, clearing adjacent Pad 8 (`D_P1`) solder mask opening by `0.175 mm`. |
+| **Sharp trace corner** | `0` Danger, `1` Warning (`76.33°`) | **`0` Danger, `0` Warning** (`100` Good) | Replaced acute bend at `(43.485, 25.6227)` on `F.Cu` `/VBUS_IN` sense trace with a `135°`chamfer via `(43.25, 25.55)`. |
+| **Silkscreen to hole** | `68` Danger (`0.00–0.12 mm`), `5` Warning | **`0` Danger**, `1` Warning (`7` Good) | Trimmed/repositioned `17` `fp_line`/`fp_circle` primitives across `U1`, `C26..C31`, `J1..J7`, `U2..U6`, `D5..D11`, and moved `51` `F.SilkS`/`B.SilkS` Reference designators clear of all via/PTH drill holes (`>= 0.20 mm` edge-to-edge). |
+| **Silkscreen to pad** | `2` Danger (`0.00–0.03 mm`), `1` Warning | **`0` Danger**, `2` Warning (`24` Good) | Shifted `R20` Reference designator and `U4`/`U6`/`J2`/`J3` pin-1 silkscreen indicators clear of exposed copper/solder-mask openings. |
+| **tht to smd** | `21` Danger, `13` Warning | `21` Danger, `13` Warning (`22` Good) | Advisory wave-soldering fixture spacing check (`2.03 mm / 3.05 mm` threshold) between `J1`/`J4`/`SP1..SP8` through-hole shield/spacer pins and nearby SMD pads (including `J1` and `J4`'s own internal SMD signal pads). Not applicable to SMT reflow / selective soldering. |
+
+---
+
+## 3. Pass / Fail Status per KiCad & Fab Readiness Check
+
+| Check ID / Category | Target Limit (JLCPCB 6L / Lion Circuits Custom 6L) | Measured Board / Package Value | Status |
+|---|---|---|---|
+| **1. Board Outline & Dimensions (`dfm.outline`)** | Closed `Edge.Cuts` contour; `>= 3 x 3 mm` (`>= 50 x 100 mm` panel for SMT) | Single: `55.00 x 40.00 mm` (`R=3.0 mm` corners, closed contour); 2-up panel: `113.10 x 56.10 mm` with `5 mm` rails | **PASS** |
+| **2. Stack-up & Layer Count (`dfm.stackup`)** | 6-layer `1.6 mm` controlled-impedance (`1 oz` outer `0.035 mm`, `0.5 oz` inner `0.0175 mm`) | `6` copper layers (`F.Cu`, `In1.Cu` GND, `In2.Cu`, `In3.Cu` Power, `In4.Cu` GND, `B.Cu`), `1.6 mm` stack (`SU-06L-0165-GDM140-001`) | **PASS** |
+| **3. Minimum Track Width (`pcb.rules` / `dfm.track`)** | JLCPCB: `>= 0.127 mm` (`5 mil`); Lion: `>= 0.1524 mm` (`6 mil`) | `0.1524 mm` (`Default`), `0.180 mm` (`Diff100`), `0.230 mm` (`Diff90`), `0.500 mm` (`Power`) | **PASS** |
+| **4. Minimum Copper Clearance (`pcb.rules` / `dfm.clearance`)** | JLCPCB: `>= 0.127 mm` (`5 mil`); Lion: `>= 0.1524 mm` (`6 mil`) | `0.1524 mm` (`6.0 mil`) across all net classes and zones (`0` clearance violations) | **PASS** |
+| **5. Via Drill & Annular Ring (`dfm.vias`)** | Drill: `>= 0.30 mm` (JLCPCB) / `>= 0.35 mm` (Lion); Pad: `>= 0.45 mm` / `>= 0.66 mm`; Ring: `>= 0.152 mm` | `178` vias: min drill `0.350 mm`, min diameter `0.660 mm`, min annular ring `0.155 mm` | **PASS** |
+| **6. PTH / NPTH Drill & Hole-to-Hole (`dfm.drills`)** | PTH drill `>= 0.35 mm` (ring `>= 0.152 mm`); NPTH `>= 0.50 mm`; Hole-to-hole `>= 0.3048 mm` | Main: PTH min `0.70 mm` (ring `0.20 mm`), NPTH min `0.55 mm`; Panel mousebites: `0.50 mm` NPTH at `0.85–1.00 mm` pitch (`>= 0.35 mm` edge-to-edge) | **PASS** |
+| **7. Copper-to-Edge Clearance (`dfm.copper_edge`)** | JLCPCB: `>= 0.30 mm`; Lion: `>= 0.30 mm` (`0.40 mm` rule) | Main: `>= 0.400 mm`; Panel: zone clearance set to `0.410 mm` (`>= 0.409 mm` actual) | **PASS** |
+| **8. Solder Mask & Paste Apertures (`dfm.mask_paste`)** | `pad_to_mask_clearance = 0 mm`, no solder mask bridges, tented vias | `0` `solder_mask_bridge` violations; `F.Paste` & `B.Paste` generated for all SMD pads | **PASS** |
+| **9. Silkscreen Legibility & Clipping (`pcb.rules` / `pcb.silkscreen`)** | JLCPCB: height `>= 1.0 mm`, stroke `>= 0.15 mm`; `0` overlap/pad clipping | `min_text_height = 1.0 mm`; all visible designators `1.0 x 1.0 mm` (`0.16 mm` stroke); `0` `silk_overlap` / `silk_over_copper` | **PASS** |
+| **10. Schematic-to-PCB Net & Field Parity (`pcb.parity`)** | `0` net conflicts, `0` unconnected items, `0` field/footprint mismatches | `174` nets matched 1:1 (`0` `net_conflict`, `0` `footprint_symbol_field_mismatch`, `0` `lib_footprint_mismatch`, `0` unconnected) | **PASS** |
+| **11. BOM Field Completeness (`parts.bom_fields`)** | Every BOM part has `Value`, `Footprint`, `MPN`, `LCSC` (`C#####`), and `Datasheet` | All `81` BOM parts have verified `Value`, `Footprint`, `MPN`, `LCSC`, and `Datasheet` URLs (`34` unique LCSC parts) | **PASS** |
+| **12. Gerber, Drill, BOM & CPL/POS Package (`release.outputs` / `release.cpl`)** | 13 Gerber layers + `PTH.drl` + `NPTH.drl` + `.gbrjob` (`16` files); BOM/CPL/POS designator parity (`81` parts: `75` top + `6` bottom) | `fab/rpi-ai-cam-lc-gerbers.zip` (`16` files), `fab/rpi-ai-cam-lc-panel-gerbers.zip` (`16` files), `fab/rpi-ai-cam-lc-pos.zip` (`81/81` parts matched) | **PASS** |

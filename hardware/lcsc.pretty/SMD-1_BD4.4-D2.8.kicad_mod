@@ -9,7 +9,7 @@
 		(uuid "4fc26fd4-7db9-4446-ac28-28025194d247")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -21,12 +21,12 @@
 		(uuid "6c30728f-d618-4490-8fac-efb725a9f950")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C7495116.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -55,7 +55,7 @@
 		(uuid "52d8d69a-6f19-4f17-93d6-260fafa7095f")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)

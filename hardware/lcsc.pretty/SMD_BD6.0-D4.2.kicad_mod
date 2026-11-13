@@ -9,7 +9,7 @@
 		(uuid "ce991238-01cb-4979-b313-6ba911c83263")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -26,7 +26,7 @@
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C27626588.pdf"
 		(at 0 0 180)
 		(layer "F.Fab")
 		(hide yes)

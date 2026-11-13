@@ -9,7 +9,7 @@
 		(uuid "a187ad4b-85e6-4c95-ae4b-b5d6ecd352f5")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -26,7 +26,7 @@
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C201665.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -109,8 +109,8 @@
 		(uuid "a3cbe1bd-1a6c-4abe-b8fc-4b86bbfb685d")
 	)
 	(fp_line
-		(start 3.9 -1.75)
-		(end 3.9 1.75)
+		(start 3.55 -1.75)
+		(end 3.55 1.75)
 		(stroke
 			(width 0.16)
 			(type solid)

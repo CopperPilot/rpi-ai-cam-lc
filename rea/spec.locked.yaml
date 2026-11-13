@@ -219,7 +219,7 @@ board:
       reason: "(10.6 mm camera underside - 1.85 mm max camera underside component height) - 1.6 mm PCB top - 0.5 mm safety margin = 6.65 mm max component height on F.Cu"
       source: "rea_hardware.parts.ai_camera((20.431, -15.7), z_underside=10.6, rot_deg=90).outline_rect & AI Camera Product Brief p.4"
 bom:
-  - {refs: [J1], role: usb_c_power_boot, mpn: USB4105-GF-A, lcsc: C3020560, footprint: "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal", description: "GCT 16-pin USB 2.0 Type-C horizontal SMT receptacle"}
+  - {refs: [J1], role: usb_c_power_boot, mpn: USB4105GFA, lcsc: C3020560, footprint: "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal", description: "GCT 16-pin USB 2.0 Type-C horizontal SMT receptacle (GCT USB4105-GF-A / Lion Circuits MPN USB4105GFA)"}
   - {refs: [J2, J3], role: usb_a_host, mpn: "629104190121", lcsc: C2890991, footprint: "lcsc:USB-A-SMD_629104190121", description: "Wurth WR-COM USB 2.0 Type-A horizontal SMT receptacle"}
   - {refs: [J4], role: hdmi0, mpn: 10029449-111RLF, lcsc: C427307, footprint: "lcsc:HDMI-SMD_10029449-001RLF", description: "Amphenol full-size HDMI Type-A right-angle SMT receptacle"}
   - {refs: [J5], role: csi_camera_ffc, mpn: SFW15R-1STE1LF, lcsc: C3168538, footprint: "lcsc:CONN-SMD_15P-P0.50_SFW15R-1STE1LF", description: "Amphenol 15-pin 1.0 mm right-angle bottom-contact ZIF FFC socket"}

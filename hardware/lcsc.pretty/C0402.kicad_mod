@@ -10,7 +10,7 @@
 		(uuid "621d649a-1f62-4a67-8848-10e32a009b43")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -27,7 +27,7 @@
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C77020.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)

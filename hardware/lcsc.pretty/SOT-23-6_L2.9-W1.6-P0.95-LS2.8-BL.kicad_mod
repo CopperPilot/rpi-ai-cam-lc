@@ -10,7 +10,7 @@
 		(uuid "a7a3a8ac-cc14-43a6-a2df-38fe3ea388f4")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -27,7 +27,7 @@
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C7519.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -120,8 +120,8 @@
 		(uuid "aed6c523-77dc-4c41-82ee-abc34693f4fe")
 	)
 	(fp_circle
-		(center -1.8 1.15)
-		(end -1.68 1.15)
+		(center -1.8 0.35)
+		(end -1.68 0.35)
 		(stroke
 			(width 0.16)
 			(type solid)

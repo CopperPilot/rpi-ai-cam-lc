@@ -1,32 +1,47 @@
 {
   "project": "rpi-ai-cam-lc",
   "scope": "scoped_design_task",
-  "active_phase": "schematic_review_and_cleanup",
+  "active_phase": "lioncircuits_bom_availability_and_dfm_readiness",
   "gates": {
     "skill_gates_loaded": [
       "schematic-engineer",
       "schematic-reviewer",
       "schematic-conventions",
       "thermal-simulation",
-      "emi-analysis"
+      "emi-analysis",
+      "pcb-layout-engineer",
+      "pcb-dfm-engineer",
+      "component-sourcing"
     ],
     "erc": {
       "status": "pass",
       "errors": 0,
       "warnings": 0
     },
-    "drc": {
+    "drc_main": {
       "status": "pass",
       "errors": 0,
       "warnings": 0,
       "unconnected_items": 0,
       "schematic_parity_errors": 0
     },
-    "schematic_layout_audit": {
+    "drc_panel": {
       "status": "pass",
-      "baseline_violations": 18,
-      "promoted_violations": 0,
-      "module_containers": 8
+      "errors": 0,
+      "warnings": 0,
+      "unconnected_items": 0,
+      "baseline_violations_resolved": 553
+    },
+    "lioncircuits_bom_availability": {
+      "status": "pass",
+      "total_bom_lines": 33,
+      "available_lines": 33,
+      "unavailable_lines": 0
+    },
+    "validate_builtins": {
+      "status": "pass",
+      "checks_passed": 10,
+      "total_findings": 0
     },
     "identity_gate": {
       "status": "pass",

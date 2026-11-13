@@ -1,13 +1,21 @@
 {
   "project": "rpi-ai-cam-lc",
   "scope": "scoped_design_task",
-  "active_phase": "schematic_review_and_cleanup",
+  "active_phase": "lioncircuits_bom_availability_and_dfm_readiness",
   "decisions": [
     {
       "id": "sch-paper-a2-and-8-module-containers",
       "state": "exact_reference",
       "source": "hardware/rpi-ai-cam-lc.kicad_sch + rea/spec.yaml",
       "description": "Upgraded schematic sheet size from A3 to A2 and partitioned all 84 existing components into 8 dashed module containers with bold section titles while preserving 100% of electrical netlist connectivity and PCB parity.",
+      "identity_disposition": "allowed",
+      "three_d_state": "inherited_resolved"
+    },
+    {
+      "id": "lioncircuits-bom-j1-mpn-usb4105gfa",
+      "state": "exact_reference",
+      "source": "https://www.lioncircuits.com/parts/bom-tool/6af6dd47e3e6758a9b7c5a6b",
+      "description": "Updated J1 MPN from USB4105-GF-A to Lion Circuits' unhyphenated catalogue MPN USB4105GFA (GCT 16-pin USB 2.0 Type-C horizontal SMT receptacle, 389,128 in stock at INR 101.96) across schematic, PCB, 2-up panel, symbol/footprint libraries, BOM CSVs, and spec files so all 33 BOM lines achieve 100% availability (noOfNotAvailable = 0).",
       "identity_disposition": "allowed",
       "three_d_state": "inherited_resolved"
     }

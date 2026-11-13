@@ -9,7 +9,7 @@
 		(uuid "eb86b286-7fd7-42df-963c-3da4258abee5")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.16)
 			)
 		)
@@ -26,7 +26,7 @@
 			)
 		)
 	)
-	(property "Datasheet" ""
+	(property "Datasheet" "https://www.lcsc.com/datasheet/C3168538.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -99,8 +99,8 @@
 	(attr smd)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
-		(start -6.8 2.95)
-		(end 6.8 2.95)
+		(start -2.5 2.95)
+		(end 4.5 2.95)
 		(stroke
 			(width 0.16)
 			(type solid)
@@ -109,8 +109,8 @@
 		(uuid "bf9e50db-e0a6-4aad-95d0-339dd7c69984")
 	)
 	(fp_circle
-		(center 7 -2.45)
-		(end 7.14 -2.45)
+		(center 7 -2.6)
+		(end 7.14 -2.6)
 		(stroke
 			(width 0.16)
 			(type solid)
@@ -200,8 +200,8 @@
 		(uuid "7418cd45-750d-4f16-81e1-5029aa0097c6")
 	)
 	(fp_circle
-		(center 7 -2.45)
-		(end 7.14 -2.45)
+		(center 7 -2.6)
+		(end 7.14 -2.6)
 		(stroke
 			(width 0.16)
 			(type solid)
