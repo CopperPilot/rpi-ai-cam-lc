@@ -1,9 +1,9 @@
 {
-  "url": "https://jlcdfm.com/viewer?pcbUploadFileId=644061065261510657",
+  "url": "https://jlcdfm.com/viewer?pcbUploadFileId=644533295119462402",
   "totals": {
     "danger": 21,
-    "warning": 34,
-    "checks": 27,
+    "warning": 48,
+    "checks": 32,
     "unanalyzed": 0
   },
   "problems": [
@@ -15,11 +15,18 @@
       "good": 22
     },
     {
+      "section": "Drill layer analysis",
+      "check": "Pth without pad",
+      "danger": 0,
+      "warning": 16,
+      "good": 0
+    },
+    {
       "section": "Routing layer analysis",
       "check": "Trace spacing",
       "danger": 0,
-      "warning": 8,
-      "good": 92
+      "warning": 7,
+      "good": 93
     },
     {
       "section": "Soldermask layer analysis",
@@ -36,18 +43,18 @@
       "good": 0
     },
     {
-      "section": "Silkscreen layer analysis",
-      "check": "Silkscreen to pad",
-      "danger": 0,
-      "warning": 2,
-      "good": 24
-    },
-    {
-      "section": "Silkscreen layer analysis",
-      "check": "Silkscreen to hole",
+      "section": "Routing layer analysis",
+      "check": "Trace spacing",
       "danger": 0,
       "warning": 1,
-      "good": 7
+      "good": 1
+    },
+    {
+      "section": "Routing layer analysis",
+      "check": "",
+      "danger": 0,
+      "warning": 1,
+      "good": 99
     },
     {
       "section": "Drill layer analysis",
@@ -90,8 +97,22 @@
       "section": "Routing layer analysis",
       "check": "Trace spacing",
       "danger": 0,
-      "warning": 8,
-      "good": 92
+      "warning": 7,
+      "good": 93
+    },
+    {
+      "section": "Routing layer analysis",
+      "check": "Trace spacing",
+      "danger": 0,
+      "warning": 1,
+      "good": 1
+    },
+    {
+      "section": "Routing layer analysis",
+      "check": "",
+      "danger": 0,
+      "warning": 0,
+      "good": 100
     },
     {
       "section": "Routing layer analysis",
@@ -119,7 +140,14 @@
       "check": "Pad to board edge",
       "danger": 0,
       "warning": 0,
-      "good": 6
+      "good": 0
+    },
+    {
+      "section": "Routing layer analysis",
+      "check": "",
+      "danger": 0,
+      "warning": 1,
+      "good": 99
     },
     {
       "section": "Routing layer analysis",
@@ -133,7 +161,7 @@
       "check": "Plated through-hole to trace clearance",
       "danger": 0,
       "warning": 0,
-      "good": 32
+      "good": 27
     },
     {
       "section": "Routing layer analysis",
@@ -188,15 +216,15 @@
       "section": "Silkscreen layer analysis",
       "check": "Silkscreen to pad",
       "danger": 0,
-      "warning": 2,
-      "good": 24
+      "warning": 0,
+      "good": 26
     },
     {
       "section": "Silkscreen layer analysis",
       "check": "Silkscreen to hole",
       "danger": 0,
-      "warning": 1,
-      "good": 7
+      "warning": 0,
+      "good": 9
     },
     {
       "section": "Silkscreen layer analysis",
@@ -228,6 +256,13 @@
     },
     {
       "section": "Drill layer analysis",
+      "check": "Pth without pad",
+      "danger": 0,
+      "warning": 16,
+      "good": 0
+    },
+    {
+      "section": "Drill layer analysis",
       "check": "Short slot detection",
       "danger": 0,
       "warning": 0,
@@ -243,6 +278,13 @@
     {
       "section": "Drill layer analysis",
       "check": "Via to PTH spacing",
+      "danger": 0,
+      "warning": 0,
+      "good": 0
+    },
+    {
+      "section": "Drill layer analysis",
+      "check": "Via without pad",
       "danger": 0,
       "warning": 0,
       "good": 0

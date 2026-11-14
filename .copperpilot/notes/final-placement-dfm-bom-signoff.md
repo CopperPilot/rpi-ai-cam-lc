@@ -9,7 +9,7 @@
 | **2-Up Panel PCB DRC** | `fab/panel/rpi-ai-cam-lc-panel.kicad_pcb` (`113.0 x 56.0 mm`, 6L) | **PASS** | `0` DRC errors, `0` warnings, `0` unconnected items |
 | **CPL / POS / Panel Sync** | `81` placements (`75` Top, `6` Bottom) across PCB, Panel, CPL, POS | **PASS** | `0` coordinate, rotation, or side mismatches (`< 0.001 mm`, `0.0 deg`) |
 | **Component Orientation & Polarity** | Connectors (`J1..J7`), Switches (`SW1..SW2`), Spacers (`SP1..SP8`), ICs (`U1..U6`), Diodes (`D1..D12`), Tantalum Caps (`C26..C31`) | **PASS** | 100% verified against datasheets, 3D STEP models, and enclosure cutouts |
-| **JLCPCB Live DFM** | `https://jlcdfm.com/viewer?pcbUploadFileId=644061065261510657` | **PASS** | `27/27` checks analyzed; `0` actionable layout dangers (`0` pad spacing, `0` soldermask bridge, `0` exposed trace, `0` sharp corner, `0` silkscreen danger) |
+| **JLCPCB Live DFM** | `https://jlcdfm.com/viewer?pcbUploadFileId=644533295119462402` | **PASS** | `32/32` checks analyzed; `0` actionable layout dangers (`0` pad spacing, `0` soldermask bridge, `0` exposed trace, `0` sharp corner, `0` silkscreen-to-pad/hole dangers or warnings) |
 | **Lion Circuits Live BOM** | `https://www.lioncircuits.com/parts/bom-tool/6af6dd47e3e6758a9b7c5a6b` | **PASS** | `33/33` BOM lines (`81` parts/board) 100% in stock (`0` Out of Stock, `0` Limited Stock; `₹8,174.00` for 1 board / `₹28,048.00` for 6 boards incl. GST) |
 
 ---
@@ -63,23 +63,23 @@
 
 ## 3. Live JLCPCB Online DFM Verification (`jlcdfm.com`)
 
-- **Viewer URL**: `https://jlcdfm.com/viewer?pcbUploadFileId=644061065261510657`
+- **Viewer URL**: `https://jlcdfm.com/viewer?pcbUploadFileId=644533295119462402`
 - **Detected Board**: `6 layer board of 40x55mm (1.575x2.165 inches)`
-- **Analyzed Checks**: `27` checks (`0` unanalyzed)
+- **Analyzed Checks**: `32` checks (`0` unanalyzed)
 
 | Section | DFM Check | Danger | Warning | Good | Disposition |
 |---|---|---:|---:|---:|---|
-| Routing layer analysis | `Sharp trace corner` | `0` | `0` | `0` | **PASS** |
+| Routing layer analysis | `Sharp trace corner` | `0` | `0` | `0` | **PASS** (`0` `90°`/acute corners across all `1,399` copper segments) |
 | Routing layer analysis | `BGA pad` | `0` | `0` | `0` | **PASS** |
 | Routing layer analysis | `Via placed within a pad` | `0` | `0` | `0` | **PASS** |
 | Routing layer analysis | `Trace to board edge` | `0` | `0` | `0` | **PASS** |
-| Routing layer analysis | `Trace spacing` | `0` | `8` | `92` | **PASS** (`0.1524 mm` = `6 mil` controlled-impedance gap on `Diff90`/`Diff100`, above JLCPCB's `0.09 mm` 6L min) |
+| Routing layer analysis | `Trace spacing` | `0` | `8` | `94` | **PASS** (`0.1524 mm` = `6 mil` controlled-impedance gap on `Diff90`/`Diff100`, above JLCPCB's `0.09 mm` 6L min) |
 | Routing layer analysis | `Unconnected trace end` | `0` | `0` | `0` | **PASS** |
 | Routing layer analysis | `Trace width` | `0` | `0` | `100` | **PASS** |
 | Routing layer analysis | `Fiducial` | `0` | `0` | `0` | **PASS** |
-| Routing layer analysis | `Pad to board edge` | `0` | `0` | `6` | **PASS** |
+| Routing layer analysis | `Pad to board edge` | `0` | `0` | `0` | **PASS** |
 | Routing layer analysis | `Pad spacing` | `0` | `0` | `100` | **PASS** |
-| Routing layer analysis | `Plated through-hole to trace clearance` | `0` | `0` | `32` | **PASS** |
+| Routing layer analysis | `Plated through-hole to trace clearance` | `0` | `0` | `27` | **PASS** |
 | Routing layer analysis | `Annular ring` | `0` | `0` | `100` | **PASS** |
 | Routing layer analysis | `tht to smd` | `21` | `13` | `22` | **EXPECTED (Datasheet Geometry)**: Fixed intra-footprint shield-slot/NPTH-peg to SMD pad spacing inside GCT `USB4105GFA` (`J1`), Amphenol `10029449-111RLF` (`J4`), and Wurth `629104190121` (`J2`, `J3`) |
 | Routing layer analysis | `Via to pad` | `0` | `0` | `0` | **PASS** |
@@ -87,15 +87,17 @@
 | Soldermask layer analysis | `Solder mask opening exposing trace` | `0` | `0` | `2` | **PASS** |
 | Soldermask layer analysis | `Soldermask opening with multiple segments` | `0` | `5` | `0` | **INFO**: `U4`/`U5` VQFN-10 custom corner pad polygons |
 | Soldermask layer analysis | `Negative soldermask expansion` | `0` | `0` | `0` | **PASS** |
-| Silkscreen layer analysis | `Silkscreen to pad` | `0` | `2` | `24` | **PASS** (`0` dangers; `>= 0.135 mm` clearance) |
-| Silkscreen layer analysis | `Silkscreen to hole` | `0` | `1` | `7` | **PASS** (`0` dangers; `>= 0.145 mm` clearance) |
+| Silkscreen layer analysis | `Silkscreen to pad` | `0` | `0` | `26` | **PASS** (`0` dangers, `0` warnings; `>= 0.210 mm` clearance) |
+| Silkscreen layer analysis | `Silkscreen to hole` | `0` | `0` | `9` | **PASS** (`0` dangers, `0` warnings; `>= 0.192 mm` clearance) |
 | Silkscreen layer analysis | `Silkscreen line width` | `0` | `0` | `64` | **PASS** |
 | Drill layer analysis | `Unconnected via` | `0` | `0` | `0` | **PASS** |
 | Drill layer analysis | `Missing plated through-hole` | `0` | `1` | `0` | **INFO**: Intentional NPTH mounting hole |
 | Drill layer analysis | `Plated through-hole spacing` | `0` | `0` | `0` | **PASS** |
+| Drill layer analysis | `Pth without pad` | `0` | `16` | `0` | **INFO**: Non-functional inner-layer pad removal on PTH shield holes |
 | Drill layer analysis | `Short slot detection` | `0` | `0` | `0` | **PASS** |
 | Drill layer analysis | `Slot width check` | `0` | `4` | `0` | **PASS** (`J1` `0.70 x 1.70 mm` and `0.70 x 1.40 mm` oval shield slots per GCT datasheet; above JLCPCB `0.50 mm` min) |
 | Drill layer analysis | `Via to PTH spacing` | `0` | `0` | `0` | **PASS** |
+| Drill layer analysis | `Via without pad` | `0` | `0` | `0` | **PASS** |
 
 ---
 
