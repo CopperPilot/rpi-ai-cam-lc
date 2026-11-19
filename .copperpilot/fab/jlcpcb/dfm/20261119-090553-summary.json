@@ -1,18 +1,18 @@
 {
-  "url": "https://jlcdfm.com/viewer?pcbUploadFileId=644533295119462402",
+  "url": "https://jlcdfm.com/viewer?pcbUploadFileId=646166314504847361",
   "totals": {
-    "danger": 21,
-    "warning": 48,
-    "checks": 32,
+    "danger": 3,
+    "warning": 23,
+    "checks": 31,
     "unanalyzed": 0
   },
   "problems": [
     {
       "section": "Routing layer analysis",
       "check": "tht to smd",
-      "danger": 21,
-      "warning": 13,
-      "good": 22
+      "danger": 3,
+      "warning": 1,
+      "good": 0
     },
     {
       "section": "Drill layer analysis",
@@ -22,45 +22,10 @@
       "good": 0
     },
     {
-      "section": "Routing layer analysis",
-      "check": "Trace spacing",
-      "danger": 0,
-      "warning": 7,
-      "good": 93
-    },
-    {
-      "section": "Soldermask layer analysis",
-      "check": "Soldermask opening with multiple segments",
-      "danger": 0,
-      "warning": 5,
-      "good": 0
-    },
-    {
       "section": "Drill layer analysis",
-      "check": "Slot width check",
+      "check": "Short slot detection",
       "danger": 0,
-      "warning": 4,
-      "good": 0
-    },
-    {
-      "section": "Routing layer analysis",
-      "check": "Trace spacing",
-      "danger": 0,
-      "warning": 1,
-      "good": 1
-    },
-    {
-      "section": "Routing layer analysis",
-      "check": "",
-      "danger": 0,
-      "warning": 1,
-      "good": 99
-    },
-    {
-      "section": "Drill layer analysis",
-      "check": "Missing plated through-hole",
-      "danger": 0,
-      "warning": 1,
+      "warning": 6,
       "good": 0
     }
   ],
@@ -97,15 +62,15 @@
       "section": "Routing layer analysis",
       "check": "Trace spacing",
       "danger": 0,
-      "warning": 7,
-      "good": 93
+      "warning": 0,
+      "good": 100
     },
     {
       "section": "Routing layer analysis",
       "check": "Trace spacing",
       "danger": 0,
-      "warning": 1,
-      "good": 1
+      "warning": 0,
+      "good": 2
     },
     {
       "section": "Routing layer analysis",
@@ -144,13 +109,6 @@
     },
     {
       "section": "Routing layer analysis",
-      "check": "",
-      "danger": 0,
-      "warning": 1,
-      "good": 99
-    },
-    {
-      "section": "Routing layer analysis",
       "check": "Pad spacing",
       "danger": 0,
       "warning": 0,
@@ -173,9 +131,9 @@
     {
       "section": "Routing layer analysis",
       "check": "tht to smd",
-      "danger": 21,
-      "warning": 13,
-      "good": 22
+      "danger": 3,
+      "warning": 1,
+      "good": 0
     },
     {
       "section": "Routing layer analysis",
@@ -202,7 +160,7 @@
       "section": "Soldermask layer analysis",
       "check": "Soldermask opening with multiple segments",
       "danger": 0,
-      "warning": 5,
+      "warning": 0,
       "good": 0
     },
     {
@@ -217,7 +175,7 @@
       "check": "Silkscreen to pad",
       "danger": 0,
       "warning": 0,
-      "good": 26
+      "good": 27
     },
     {
       "section": "Silkscreen layer analysis",
@@ -244,7 +202,7 @@
       "section": "Drill layer analysis",
       "check": "Missing plated through-hole",
       "danger": 0,
-      "warning": 1,
+      "warning": 0,
       "good": 0
     },
     {
@@ -265,15 +223,15 @@
       "section": "Drill layer analysis",
       "check": "Short slot detection",
       "danger": 0,
-      "warning": 0,
+      "warning": 6,
       "good": 0
     },
     {
       "section": "Drill layer analysis",
       "check": "Slot width check",
       "danger": 0,
-      "warning": 4,
-      "good": 0
+      "warning": 0,
+      "good": 8
     },
     {
       "section": "Drill layer analysis",
